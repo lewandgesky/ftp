@@ -89,15 +89,15 @@ export default function AdminPage() {
     return (
       <main className="flex min-h-screen flex-col">
         <Navbar />
-        <div className="flex-1 bg-[#0f172a] flex items-center justify-center py-20 px-4">
-          <Card className="w-full max-w-md bg-[#0f172a] border-[#334155]">
+        <div className="flex-1 bg-[#0a0a0f] flex items-center justify-center py-20 px-4">
+          <Card className="w-full max-w-md bg-[#0a0a0f] border-[#22223a]">
             <CardContent className="p-8">
               <div className="text-center mb-8">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#8b5cf6] to-[#22d3ee] flex items-center justify-center text-white mx-auto mb-4">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#7c3aed] to-[#06b6d4] flex items-center justify-center text-white mx-auto mb-4">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                 </div>
                 <h1 className="text-2xl font-bold">Administration FTP</h1>
-                <p className="text-[#94a3b8] text-sm">Veuillez vous connecter</p>
+                <p className="text-[#8888a0] text-sm">Veuillez vous connecter</p>
               </div>
               
               <form onSubmit={handleLogin} className="space-y-4">
@@ -114,8 +114,8 @@ export default function AdminPage() {
                 {loginError && (
                   <p className="text-red-500 text-sm">Mot de passe incorrect</p>
                 )}
-                <p className="text-[#64748b] text-xs text-center mt-2">
-                  Première connexion ? Mot de passe par défaut : <code className="text-[#22d3ee]">admin2026</code>
+                <p className="text-[#5a5a72] text-xs text-center mt-2">
+                  Première connexion ? Mot de passe par défaut : <code className="text-[#06b6d4]">admin2026</code>
                 </p>
                 <Button type="submit" variant="glow" className="w-full">
                   Connexion
@@ -132,7 +132,7 @@ export default function AdminPage() {
   return (
     <main className="flex min-h-screen flex-col">
       <Navbar />
-      <div className="flex-1 bg-[#0f172a] pt-24 pb-12">
+      <div className="flex-1 bg-[#0a0a0f] pt-24 pb-12">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
             <h1 className="text-2xl font-bold">Tableau de bord Admin</h1>
@@ -141,15 +141,15 @@ export default function AdminPage() {
             </Button>
           </div>
 
-          <div className="flex gap-4 mb-8 border-b border-[#334155]">
+          <div className="flex gap-4 mb-8 border-b border-[#22223a]">
             <button 
-              className={`pb-3 px-2 font-medium border-b-2 transition-colors ${activeTab === "orders" ? "border-[#22d3ee] text-[#22d3ee]" : "border-transparent text-[#94a3b8] hover:text-[#f1f5f9]"}`}
+              className={`pb-3 px-2 font-medium border-b-2 transition-colors ${activeTab === "orders" ? "border-[#06b6d4] text-[#06b6d4]" : "border-transparent text-[#8888a0] hover:text-[#f0f0f5]"}`}
               onClick={() => setActiveTab("orders")}
             >
               Commandes ({orders.length})
             </button>
             <button 
-              className={`pb-3 px-2 font-medium border-b-2 transition-colors ${activeTab === "settings" ? "border-[#22d3ee] text-[#22d3ee]" : "border-transparent text-[#94a3b8] hover:text-[#f1f5f9]"}`}
+              className={`pb-3 px-2 font-medium border-b-2 transition-colors ${activeTab === "settings" ? "border-[#06b6d4] text-[#06b6d4]" : "border-transparent text-[#8888a0] hover:text-[#f0f0f5]"}`}
               onClick={() => setActiveTab("settings")}
             >
               Paramètres & Tarifs
@@ -159,48 +159,48 @@ export default function AdminPage() {
           {activeTab === "orders" && (
             <div className="space-y-4">
               {orders.length === 0 ? (
-                <Card className="bg-[#0f172a] border-[#334155] p-12 text-center text-[#94a3b8]">
+                <Card className="bg-[#0a0a0f] border-[#22223a] p-12 text-center text-[#8888a0]">
                   Aucune commande pour le moment.
                 </Card>
               ) : (
                 <div className="grid grid-cols-1 gap-4">
                   {orders.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map(order => (
-                    <Card key={order.id} className="bg-[#1e293b] border-[#334155] overflow-hidden">
+                    <Card key={order.id} className="bg-[#12121a] border-[#22223a] overflow-hidden">
                       <div className="p-4 md:p-6 flex flex-col md:flex-row justify-between gap-4">
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-2">
                             <span className="font-bold text-lg">{order.orderRef}</span>
-                            <span className="text-xs bg-[#334155] px-2 py-1 rounded text-[#cbd5e1]">
+                            <span className="text-xs bg-[#22223a] px-2 py-1 rounded text-[#d0d0d5]">
                               {new Date(order.createdAt).toLocaleDateString()}
                             </span>
                           </div>
                           
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                             <div>
-                              <div className="text-xs text-[#64748b]">Client</div>
+                              <div className="text-xs text-[#5a5a72]">Client</div>
                               <div className="font-medium">{order.fullName}</div>
-                              <div className="text-sm text-[#94a3b8]">{order.email}</div>
-                              <div className="text-sm text-[#94a3b8]">{order.phone}</div>
+                              <div className="text-sm text-[#8888a0]">{order.email}</div>
+                              <div className="text-sm text-[#8888a0]">{order.phone}</div>
                             </div>
                             <div>
-                              <div className="text-xs text-[#64748b]">Projet</div>
+                              <div className="text-xs text-[#5a5a72]">Projet</div>
                               <div className="font-medium line-clamp-1" title={order.reportTheme}>{order.reportTheme}</div>
-                              <div className="text-sm text-[#94a3b8]">{order.school} ({order.studyLevel})</div>
+                              <div className="text-sm text-[#8888a0]">{order.school} ({order.studyLevel})</div>
                             </div>
                             <div>
-                              <div className="text-xs text-[#64748b]">Service & Prix</div>
+                              <div className="text-xs text-[#5a5a72]">Service & Prix</div>
                               <div className="font-medium capitalize">{order.serviceType}</div>
-                              <div className="text-[#22d3ee] font-bold">{order.totalPrice > 0 ? `${order.totalPrice} FCFA` : "Sur devis"}</div>
+                              <div className="text-[#06b6d4] font-bold">{order.totalPrice > 0 ? `${order.totalPrice} FCFA` : "Sur devis"}</div>
                             </div>
                           </div>
                         </div>
                         
-                        <div className="md:w-64 border-t md:border-t-0 md:border-l border-[#334155] pt-4 md:pt-0 md:pl-6 flex flex-col justify-center">
+                        <div className="md:w-64 border-t md:border-t-0 md:border-l border-[#22223a] pt-4 md:pt-0 md:pl-6 flex flex-col justify-center">
                           <Label className="mb-2 block">Statut</Label>
                           <select 
                             value={order.status} 
                             onChange={(e) => handleStatusChange(order.id, e.target.value as OrderStatus)}
-                            className="w-full bg-[#0f172a] border border-[#334155] rounded p-2 text-sm text-[#f1f5f9] focus:outline-none focus:ring-1 focus:ring-[#8b5cf6]"
+                            className="w-full bg-[#0a0a0f] border border-[#22223a] rounded p-2 text-sm text-[#f0f0f5] focus:outline-none focus:ring-1 focus:ring-[#7c3aed]"
                           >
                             {ORDER_STATUS_LIST.map(s => (
                               <option key={s} value={s}>
@@ -232,10 +232,10 @@ export default function AdminPage() {
 
           {activeTab === "settings" && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <Card className="bg-[#1e293b] border-[#334155]">
+              <Card className="bg-[#12121a] border-[#22223a]">
                 <CardContent className="p-6 md:p-8 space-y-6">
-                  <h2 className="text-xl font-bold border-b border-[#334155] pb-4">Tarification (FCFA)</h2>
-                  <p className="text-sm text-[#94a3b8]">Mettez à 0 pour afficher "Sur devis"</p>
+                  <h2 className="text-xl font-bold border-b border-[#22223a] pb-4">Tarification (FCFA)</h2>
+                  <p className="text-sm text-[#8888a0]">Mettez à 0 pour afficher "Sur devis"</p>
                   
                   <div className="space-y-4">
                     <div className="space-y-2">
@@ -272,9 +272,9 @@ export default function AdminPage() {
                 </CardContent>
               </Card>
               
-              <Card className="bg-[#1e293b] border-[#334155]">
+              <Card className="bg-[#12121a] border-[#22223a]">
                 <CardContent className="p-6 md:p-8 space-y-6">
-                  <h2 className="text-xl font-bold border-b border-[#334155] pb-4">Sécurité</h2>
+                  <h2 className="text-xl font-bold border-b border-[#22223a] pb-4">Sécurité</h2>
                   
                   <div className="space-y-4">
                     <div className="space-y-2">
@@ -289,12 +289,12 @@ export default function AdminPage() {
                     </div>
                   </div>
                   
-                  <div className="pt-4 mt-6 border-t border-[#334155]">
+                  <div className="pt-4 mt-6 border-t border-[#22223a]">
                     <Button onClick={saveSettings} variant="glow" className="w-full h-11">
                       Enregistrer les paramètres
                     </Button>
                     {settingsSaved && (
-                      <p className="text-[#34d399] text-sm text-center mt-3 animate-pulse">
+                      <p className="text-[#10b981] text-sm text-center mt-3 animate-pulse">
                         Paramètres enregistrés avec succès !
                       </p>
                     )}

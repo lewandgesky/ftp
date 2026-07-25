@@ -10,15 +10,15 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "default", size = "default", asChild = false, ...props }, ref) => {
     
-    const baseStyles = "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ring-offset-[#0f172a] focus-visible:ring-[#8b5cf6]"
+    const baseStyles = "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ring-offset-[#0a0a0f] focus-visible:ring-[#7c3aed]"
     
     const variants = {
-      default: "bg-[#f1f5f9] text-[#0f172a] hover:bg-[#cbd5e1]",
+      default: "bg-[#f0f0f5] text-[#0a0a0f] hover:bg-[#d0d0d5]",
       destructive: "bg-red-500 text-white hover:bg-red-600",
-      outline: "border border-[#334155] bg-transparent hover:bg-[#1e293b] text-[#f1f5f9]",
-      secondary: "bg-[#1e293b] text-[#f1f5f9] hover:bg-[#334155]",
-      ghost: "hover:bg-[#1e293b] text-[#f1f5f9]",
-      link: "text-[#818cf8] underline-offset-4 hover:underline",
+      outline: "border border-[#22223a] bg-transparent hover:bg-[#12121a] text-[#f0f0f5]",
+      secondary: "bg-[#12121a] text-[#f0f0f5] hover:bg-[#22223a]",
+      ghost: "hover:bg-[#12121a] text-[#f0f0f5]",
+      link: "text-[#6366f1] underline-offset-4 hover:underline",
       glow: "btn-glow text-white font-semibold",
     }
     

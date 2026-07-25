@@ -56,11 +56,11 @@ function TrackingContent() {
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-3xl font-bold mb-4">{t("tracking.title")}</h1>
-          <p className="text-[#94a3b8]">{t("tracking.subtitle")}</p>
+          <p className="text-[#8888a0]">{t("tracking.subtitle")}</p>
         </div>
 
         {!order ? (
-          <Card className="bg-[#0f172a] border-[#334155] max-w-md mx-auto">
+          <Card className="bg-[#0a0a0f] border-[#22223a] max-w-md mx-auto">
             <CardContent className="p-6 md:p-8">
               <form onSubmit={handleSearch} className="space-y-6">
                 <div className="space-y-2">
@@ -100,32 +100,32 @@ function TrackingContent() {
           <div className="space-y-8 animate-fade-in-up">
             <button 
               onClick={() => {setOrder(null); router.replace("/suivi");}}
-              className="text-sm text-[#94a3b8] hover:text-[#f1f5f9] flex items-center gap-2 transition-colors"
+              className="text-sm text-[#8888a0] hover:text-[#f0f0f5] flex items-center gap-2 transition-colors"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
               Nouvelle recherche
             </button>
 
-            <Card className="bg-[#0f172a] border-[#334155] overflow-hidden">
+            <Card className="bg-[#0a0a0f] border-[#22223a] overflow-hidden">
               {/* Timeline Header */}
-              <div className="bg-[#1e293b] border-b border-[#334155] p-6 md:p-8">
+              <div className="bg-[#12121a] border-b border-[#22223a] p-6 md:p-8">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
                   <div>
                     <h2 className="text-xl font-bold">{order.orderRef}</h2>
-                    <p className="text-[#94a3b8] text-sm mt-1">{order.reportTheme}</p>
+                    <p className="text-[#8888a0] text-sm mt-1">{order.reportTheme}</p>
                   </div>
-                  <div className="bg-[#8b5cf6]/10 border border-[#8b5cf6]/30 text-[#8b5cf6] px-4 py-2 rounded-full text-sm font-medium">
+                  <div className="bg-[#7c3aed]/10 border border-[#7c3aed]/30 text-[#7c3aed] px-4 py-2 rounded-full text-sm font-medium">
                     {t(`tracking.statuses.${order.status}`)}
                   </div>
                 </div>
 
                 {/* Visual Timeline */}
                 <div className="relative pt-8 pb-4">
-                  <div className="absolute top-10 left-0 w-full h-[2px] bg-[#334155] z-0"></div>
+                  <div className="absolute top-10 left-0 w-full h-[2px] bg-[#22223a] z-0"></div>
                   
                   {/* Progress Line */}
                   <div 
-                    className="absolute top-10 left-0 h-[2px] bg-gradient-to-r from-[#8b5cf6] to-[#22d3ee] z-0 transition-all duration-1000"
+                    className="absolute top-10 left-0 h-[2px] bg-gradient-to-r from-[#7c3aed] to-[#06b6d4] z-0 transition-all duration-1000"
                     style={{ width: `${(getStatusIndex(order.status) / (ORDER_STATUS_LIST.length - 1)) * 100}%` }}
                   ></div>
 
@@ -138,15 +138,15 @@ function TrackingContent() {
                         <div key={s} className="flex flex-col items-center group relative">
                           <div 
                             className={`w-5 h-5 rounded-full mb-3 flex items-center justify-center border-2 transition-colors duration-500 ${
-                              isCurrent ? "bg-[#0f172a] border-[#22d3ee] shadow-glow" :
-                              isActive ? "bg-[#22d3ee] border-[#22d3ee]" : "bg-[#0f172a] border-[#334155]"
+                              isCurrent ? "bg-[#0a0a0f] border-[#06b6d4] shadow-glow" :
+                              isActive ? "bg-[#06b6d4] border-[#06b6d4]" : "bg-[#0a0a0f] border-[#22223a]"
                             }`}
                           >
                             {isActive && !isCurrent && (
-                              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#0f172a" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#0a0a0f" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                             )}
                           </div>
-                          <span className={`text-[10px] md:text-xs text-center absolute top-8 whitespace-nowrap transition-colors ${isActive ? "text-[#f1f5f9]" : "text-[#64748b]"}`}>
+                          <span className={`text-[10px] md:text-xs text-center absolute top-8 whitespace-nowrap transition-colors ${isActive ? "text-[#f0f0f5]" : "text-[#5a5a72]"}`}>
                             <span className="hidden md:inline">{t(`tracking.statuses.${s}`)}</span>
                             {/* Short text for mobile could be added here */}
                           </span>
@@ -160,14 +160,14 @@ function TrackingContent() {
               {/* Order Details */}
               <div className="p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="font-semibold text-[#94a3b8] mb-4 text-sm uppercase tracking-wider">{t("order.summary")}</h3>
+                  <h3 className="font-semibold text-[#8888a0] mb-4 text-sm uppercase tracking-wider">{t("order.summary")}</h3>
                   <div className="space-y-4">
                     <div>
-                      <div className="text-xs text-[#64748b] mb-1">{t("tracking.orderDate")}</div>
+                      <div className="text-xs text-[#5a5a72] mb-1">{t("tracking.orderDate")}</div>
                       <div className="font-medium">{new Date(order.createdAt).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}</div>
                     </div>
                     <div>
-                      <div className="text-xs text-[#64748b] mb-1">{t("tracking.services")}</div>
+                      <div className="text-xs text-[#5a5a72] mb-1">{t("tracking.services")}</div>
                       <div className="font-medium">
                         {order.serviceType === "report" ? t("services.report.name") : 
                          order.serviceType === "powerpoint" ? t("services.powerpoint.name") : 
@@ -175,8 +175,8 @@ function TrackingContent() {
                       </div>
                     </div>
                     <div>
-                      <div className="text-xs text-[#64748b] mb-1">{t("tracking.estimatedDelivery")}</div>
-                      <div className="font-medium text-[#fbbf24]">
+                      <div className="text-xs text-[#5a5a72] mb-1">{t("tracking.estimatedDelivery")}</div>
+                      <div className="font-medium text-[#f59e0b]">
                         {order.estimatedDelivery ? new Date(order.estimatedDelivery).toLocaleDateString('fr-FR') : "À confirmer"}
                       </div>
                     </div>
@@ -184,8 +184,8 @@ function TrackingContent() {
                 </div>
                 
                 <div>
-                  <h3 className="font-semibold text-[#94a3b8] mb-4 text-sm uppercase tracking-wider">Contact & Support</h3>
-                  <p className="text-sm text-[#cbd5e1] mb-6 leading-relaxed">
+                  <h3 className="font-semibold text-[#8888a0] mb-4 text-sm uppercase tracking-wider">Contact & Support</h3>
+                  <p className="text-sm text-[#d0d0d5] mb-6 leading-relaxed">
                     Vous avez une question sur l'avancement ou souhaitez envoyer de nouveaux documents ?
                   </p>
                   <a href={getWhatsAppOrderLink(order.orderRef)} target="_blank" rel="noopener noreferrer">

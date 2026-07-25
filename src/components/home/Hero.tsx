@@ -24,22 +24,22 @@ export function Hero() {
 
       <div className="container mx-auto px-4 md:px-6 relative z-10 pt-24">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-[#8b5cf6]/30 text-sm text-[#22d3ee] font-medium mb-8 animate-fade-in-up">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-[#7c3aed]/30 text-sm text-[#06b6d4] font-medium mb-8 animate-fade-in-up">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22d3ee] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#22d3ee]"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#06b6d4] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#06b6d4]"></span>
             </span>
             {t("hero.badge")}
           </div>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 animate-fade-in-up delay-100">
             {t("hero.title")} <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8b5cf6] via-[#818cf8] to-[#22d3ee]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7c3aed] via-[#6366f1] to-[#06b6d4]">
               {t("hero.titleHighlight")}
             </span>
           </h1>
           
-          <p className="text-lg md:text-xl text-[#94a3b8] mb-10 max-w-2xl mx-auto leading-relaxed animate-fade-in-up delay-200">
+          <p className="text-lg md:text-xl text-[#8888a0] mb-10 max-w-2xl mx-auto leading-relaxed animate-fade-in-up delay-200">
             {t("hero.subtitle")}
           </p>
           
@@ -50,7 +50,7 @@ export function Hero() {
               </Button>
             </Link>
             <Link href="#templates" className="w-full sm:w-auto">
-              <Button size="lg" variant="outline" className="w-full text-base h-13 px-10 border-[#475569] hover:border-[#8b5cf6]/50 hover:bg-[#8b5cf6]/5">
+              <Button size="lg" variant="outline" className="w-full text-base h-13 px-10 border-[#3a3a52] hover:border-[#7c3aed]/50 hover:bg-[#7c3aed]/5">
                 {t("hero.ctaSecondary")}
               </Button>
             </Link>
@@ -59,16 +59,16 @@ export function Hero() {
           {/* Stats bar */}
           <div className="mt-16 grid grid-cols-3 gap-8 max-w-lg mx-auto animate-fade-in-up delay-400">
             <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-[#f1f5f9]">50+</div>
-              <div className="text-xs md:text-sm text-[#64748b]">{t("hero.statsReports") || "Rapports livrés"}</div>
+              <div className="text-2xl md:text-3xl font-bold text-[#f0f0f5]">50+</div>
+              <div className="text-xs md:text-sm text-[#5a5a72]">{t("hero.statsReports") || "Rapports livrés"}</div>
             </div>
-            <div className="text-center border-x border-[#334155]">
-              <div className="text-2xl md:text-3xl font-bold text-[#f1f5f9]">100%</div>
-              <div className="text-xs md:text-sm text-[#64748b]">{t("hero.statsSatisfaction") || "Satisfaction"}</div>
+            <div className="text-center border-x border-[#22223a]">
+              <div className="text-2xl md:text-3xl font-bold text-[#f0f0f5]">100%</div>
+              <div className="text-xs md:text-sm text-[#5a5a72]">{t("hero.statsSatisfaction") || "Satisfaction"}</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-[#f1f5f9]">48h</div>
-              <div className="text-xs md:text-sm text-[#64748b]">{t("hero.statsDelivery") || "Délai moyen"}</div>
+              <div className="text-2xl md:text-3xl font-bold text-[#f0f0f5]">48h</div>
+              <div className="text-xs md:text-sm text-[#5a5a72]">{t("hero.statsDelivery") || "Délai moyen"}</div>
             </div>
           </div>
         </div>

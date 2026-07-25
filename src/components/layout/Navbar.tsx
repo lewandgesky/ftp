@@ -31,7 +31,7 @@ export function Navbar() {
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#8b5cf6] to-[#22d3ee] flex items-center justify-center text-white font-bold text-xl shadow-glow group-hover:scale-105 transition-transform">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#7c3aed] to-[#06b6d4] flex items-center justify-center text-white font-bold text-xl shadow-glow group-hover:scale-105 transition-transform">
             F
           </div>
           <span className="font-bold text-xl tracking-tight hidden sm:block">
@@ -41,16 +41,16 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-6 lg:gap-8">
-          <Link href="/#services" className="text-sm text-[#f1f5f9] hover:text-[#22d3ee] transition-colors">
+          <Link href="/#services" className="text-sm text-[#f0f0f5] hover:text-[#06b6d4] transition-colors">
             {t("nav.services")}
           </Link>
-          <Link href="/#templates" className="text-sm text-[#f1f5f9] hover:text-[#22d3ee] transition-colors">
+          <Link href="/#templates" className="text-sm text-[#f0f0f5] hover:text-[#06b6d4] transition-colors">
             {t("nav.templates")}
           </Link>
-          <Link href="/#faq" className="text-sm text-[#f1f5f9] hover:text-[#22d3ee] transition-colors">
+          <Link href="/#faq" className="text-sm text-[#f0f0f5] hover:text-[#06b6d4] transition-colors">
             {t("nav.faq")}
           </Link>
-          <Link href="/suivi" className="text-sm text-[#94a3b8] hover:text-[#f1f5f9] transition-colors">
+          <Link href="/suivi" className="text-sm text-[#8888a0] hover:text-[#f0f0f5] transition-colors">
             {t("nav.tracking")}
           </Link>
         </nav>
@@ -59,7 +59,7 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <button
             onClick={toggleLocale}
-            className="text-xs font-mono px-2 py-1 rounded border border-[#334155] hover:bg-[#1e293b] transition-colors"
+            className="text-xs font-mono px-2 py-1 rounded border border-[#22223a] hover:bg-[#12121a] transition-colors"
             title={t("common.language")}
           >
             {locale === "fr" ? "EN" : "FR"}
@@ -73,7 +73,7 @@ export function Navbar() {
 
           {/* Mobile menu toggle */}
           <button 
-            className="md:hidden p-2 text-[#f1f5f9]"
+            className="md:hidden p-2 text-[#f0f0f5]"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -89,17 +89,17 @@ export function Navbar() {
 
       {/* Mobile Nav */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full glass-strong border-t border-[#334155] py-4 px-4 flex flex-col gap-4 animate-fade-in-up">
-          <Link href="/#services" className="text-[#f1f5f9] py-2 border-b border-[#334155]/50" onClick={() => setMobileMenuOpen(false)}>
+        <div className="md:hidden absolute top-full left-0 w-full glass-strong border-t border-[#22223a] py-4 px-4 flex flex-col gap-4 animate-fade-in-up">
+          <Link href="/#services" className="text-[#f0f0f5] py-2 border-b border-[#22223a]/50" onClick={() => setMobileMenuOpen(false)}>
             {t("nav.services")}
           </Link>
-          <Link href="/#templates" className="text-[#f1f5f9] py-2 border-b border-[#334155]/50" onClick={() => setMobileMenuOpen(false)}>
+          <Link href="/#templates" className="text-[#f0f0f5] py-2 border-b border-[#22223a]/50" onClick={() => setMobileMenuOpen(false)}>
             {t("nav.templates")}
           </Link>
-          <Link href="/#faq" className="text-[#f1f5f9] py-2 border-b border-[#334155]/50" onClick={() => setMobileMenuOpen(false)}>
+          <Link href="/#faq" className="text-[#f0f0f5] py-2 border-b border-[#22223a]/50" onClick={() => setMobileMenuOpen(false)}>
             {t("nav.faq")}
           </Link>
-          <Link href="/suivi" className="text-[#f1f5f9] py-2 border-b border-[#334155]/50" onClick={() => setMobileMenuOpen(false)}>
+          <Link href="/suivi" className="text-[#f0f0f5] py-2 border-b border-[#22223a]/50" onClick={() => setMobileMenuOpen(false)}>
             {t("nav.tracking")}
           </Link>
           <Link href="/commander" className="mt-2" onClick={() => setMobileMenuOpen(false)}>
