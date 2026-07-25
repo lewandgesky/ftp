@@ -1,0 +1,250 @@
+{
+  "common": {
+    "brandName": "FTP",
+    "brandFullName": "FaisToiPlaisir",
+    "orderNow": "Commander mon rapport",
+    "seeTemplates": "Voir nos réalisations",
+    "whatsappChat": "Discuter sur WhatsApp",
+    "loading": "Chargement...",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "confirm": "Confirmer",
+    "cancel": "Annuler",
+    "submit": "Envoyer",
+    "download": "Télécharger",
+    "close": "Fermer",
+    "yes": "Oui",
+    "no": "Non",
+    "required": "Obligatoire",
+    "optional": "Optionnel",
+    "language": "Langue",
+    "french": "Français",
+    "english": "English"
+  },
+  "nav": {
+    "home": "Accueil",
+    "services": "Services",
+    "templates": "Réalisations",
+    "testimonials": "Témoignages",
+    "faq": "FAQ",
+    "order": "Commander",
+    "tracking": "Suivi",
+    "admin": "Administration"
+  },
+  "hero": {
+    "title": "Votre rapport de stage,",
+    "titleHighlight": "rédigé par un expert.",
+    "subtitle": "Concentrez-vous sur votre soutenance. On s'occupe du reste. Recevez un rapport professionnel, complet et prêt à imprimer.",
+    "cta": "Commander mon rapport",
+    "ctaSecondary": "Voir nos réalisations",
+    "badge": "🎓 +200 rapports livrés avec succès"
+  },
+  "howItWorks": {
+    "title": "Comment ça marche ?",
+    "subtitle": "Un processus simple en 3 étapes pour obtenir votre rapport de stage professionnel.",
+    "step1Title": "Remplissez le formulaire",
+    "step1Desc": "Partagez les détails de votre stage : thème, entreprise, tâches réalisées et consignes de votre école.",
+    "step2Title": "Validez et payez",
+    "step2Desc": "Vérifiez votre commande, choisissez vos options (Rapport, PowerPoint ou Pack complet) et effectuez le paiement.",
+    "step3Title": "Recevez votre rapport",
+    "step3Desc": "Votre rapport professionnel vous est livré dans les délais convenus, prêt à être imprimé et soutenu."
+  },
+  "services": {
+    "title": "Nos Services",
+    "subtitle": "Des prestations premium adaptées à vos besoins académiques.",
+    "report": {
+      "name": "Rapport de Stage",
+      "desc": "Rédaction complète de votre rapport de A à Z",
+      "features": [
+        "Page de couverture professionnelle",
+        "Sommaire structuré",
+        "Introduction & Conclusion",
+        "Corps du rapport détaillé",
+        "Bibliographie & Annexes",
+        "Mise en page soignée"
+      ]
+    },
+    "powerpoint": {
+      "name": "PowerPoint Soutenance",
+      "desc": "Diaporama professionnel pour votre soutenance",
+      "features": [
+        "15 à 25 slides premium",
+        "Design moderne et épuré",
+        "Animations sobres",
+        "Graphiques et visuels",
+        "Notes du présentateur",
+        "Format compatible"
+      ]
+    },
+    "pack": {
+      "name": "Pack Complet",
+      "desc": "Rapport + PowerPoint à prix réduit",
+      "features": [
+        "Rapport de stage complet",
+        "PowerPoint de soutenance",
+        "Cohérence visuelle garantie",
+        "Réduction exclusive",
+        "Suivi prioritaire",
+        "Corrections incluses"
+      ]
+    },
+    "priceLabel": "À partir de",
+    "priceTBD": "Prix sur demande",
+    "popular": "Populaire",
+    "choosePlan": "Choisir cette offre"
+  },
+  "templates": {
+    "title": "Nos Réalisations",
+    "subtitle": "Découvrez quelques exemples de rapports et présentations que nous avons produits.",
+    "pages": "pages",
+    "viewMore": "Voir l'aperçu"
+  },
+  "testimonials": {
+    "title": "Ce que disent nos clients",
+    "subtitle": "Des étudiants satisfaits à travers tout le pays."
+  },
+  "faq": {
+    "title": "Questions Fréquentes",
+    "subtitle": "Tout ce que vous devez savoir sur nos services.",
+    "items": [
+      {
+        "q": "Comment se passe la commande ?",
+        "a": "C'est simple ! Remplissez notre formulaire en ligne avec les détails de votre stage, choisissez le service souhaité, puis effectuez le paiement. Nous prenons en charge la rédaction et vous livrons le rapport finalisé."
+      },
+      {
+        "q": "En combien de temps recevrai-je mon rapport ?",
+        "a": "Le délai de livraison dépend de la complexité et de la longueur du rapport. En général, comptez entre 5 et 10 jours ouvrables. Nous vous tiendrons informé de l'avancée via WhatsApp."
+      },
+      {
+        "q": "Mes données sont-elles confidentielles ?",
+        "a": "Absolument ! Toutes vos informations personnelles et académiques sont strictement confidentielles. Nous ne partageons jamais les données de nos clients avec des tiers."
+      },
+      {
+        "q": "Puis-je demander des corrections ?",
+        "a": "Oui, nous offrons des corrections après la livraison de la première version. Vous pouvez nous faire part de vos remarques via WhatsApp et nous ajusterons le rapport en conséquence."
+      },
+      {
+        "q": "Comment se fait le paiement ?",
+        "a": "Nous acceptons les paiements par Mobile Money (MTN MoMo, Orange Money). Les détails de paiement vous seront communiqués après la soumission de votre commande."
+      },
+      {
+        "q": "Que contient le Pack PowerPoint ?",
+        "a": "Le Pack PowerPoint inclut un diaporama de 15 à 25 slides avec un design professionnel, des animations sobres, des graphiques pertinents et les notes du présentateur pour vous aider lors de votre soutenance."
+      }
+    ]
+  },
+  "footer": {
+    "rights": "Tous droits réservés.",
+    "tagline": "Votre partenaire pour des rapports de stage professionnels.",
+    "contact": "Contact",
+    "legal": "Mentions légales",
+    "privacy": "Confidentialité",
+    "terms": "CGV"
+  },
+  "order": {
+    "title": "Commander un service",
+    "subtitle": "Remplissez le formulaire ci-dessous pour passer votre commande.",
+    "step1": "Informations personnelles",
+    "step2": "Votre stage",
+    "step3": "Le projet",
+    "step4": "Documents",
+    "step5": "Services",
+    "fullName": "Nom complet",
+    "email": "Adresse email",
+    "phone": "Téléphone (WhatsApp)",
+    "school": "École / Université",
+    "fieldOfStudy": "Filière / Spécialité",
+    "studyLevel": "Niveau d'études",
+    "studyLevels": {
+      "bts": "BTS",
+      "licence": "Licence",
+      "master": "Master",
+      "ingenieur": "Ingénieur",
+      "other": "Autre"
+    },
+    "companyName": "Nom de l'entreprise",
+    "companySector": "Secteur d'activité",
+    "internshipDuration": "Durée du stage",
+    "department": "Service / Département",
+    "supervisorName": "Nom de l'encadreur",
+    "positionHeld": "Poste occupé",
+    "reportTheme": "Thème du rapport",
+    "problematic": "Problématique",
+    "objectives": "Objectifs du stage",
+    "tasksDone": "Tâches réalisées",
+    "tasksDoneHint": "Décrivez en détail les tâches et missions effectuées durant votre stage (minimum 50 caractères)",
+    "difficulties": "Difficultés rencontrées",
+    "results": "Résultats / Réalisations",
+    "schoolGuidelines": "Consignes spécifiques de l'école",
+    "schoolGuidelinesHint": "Plan imposé, nombre de pages, format requis, etc.",
+    "uploadTitle": "Documents de support",
+    "uploadDesc": "Glissez vos fichiers ici ou cliquez pour sélectionner",
+    "uploadFormats": "PDF, DOCX, DOC, JPG, PNG — Max 30 Mo par fichier",
+    "uploadSuggestions": "Notes de stage, organigramme, consignes de l'école, captures d'écran...",
+    "maxFiles": "Maximum 10 fichiers",
+    "serviceChoice": "Choisissez votre service",
+    "specialRequests": "Remarques ou demandes spéciales",
+    "specialRequestsHint": "Informations supplémentaires, délai souhaité, etc.",
+    "summary": "Récapitulatif de votre commande",
+    "confirmOrder": "Confirmer la commande",
+    "orderSuccess": "Commande envoyée avec succès !",
+    "orderRef": "Votre numéro de commande :",
+    "orderNextSteps": "Nous vous contacterons sur WhatsApp pour confirmer les détails de paiement et le délai de livraison.",
+    "goToWhatsApp": "Nous contacter sur WhatsApp",
+    "goToTracking": "Suivre ma commande"
+  },
+  "tracking": {
+    "title": "Suivre ma commande",
+    "subtitle": "Entrez votre numéro de commande et votre email pour voir l'avancement.",
+    "orderRef": "Numéro de commande",
+    "orderRefPlaceholder": "Ex: CMD-2026-0001",
+    "email": "Adresse email",
+    "search": "Rechercher",
+    "notFound": "Aucune commande trouvée avec ces informations.",
+    "status": "Statut actuel",
+    "orderDate": "Date de commande",
+    "estimatedDelivery": "Livraison estimée",
+    "theme": "Thème",
+    "services": "Services commandés",
+    "files": "Documents envoyés",
+    "whatsappFollow": "Échanger sur WhatsApp",
+    "statuses": {
+      "brouillon": "Brouillon",
+      "en_attente_paiement": "En attente de paiement",
+      "paiement_valide": "Paiement validé",
+      "en_cours": "En cours de rédaction",
+      "premiere_version": "Première version envoyée",
+      "en_correction": "En correction",
+      "termine": "Terminé / Livré"
+    }
+  },
+  "admin": {
+    "title": "Administration FTP",
+    "login": "Connexion administrateur",
+    "password": "Mot de passe",
+    "loginBtn": "Se connecter",
+    "logout": "Déconnexion",
+    "dashboard": "Tableau de bord",
+    "orders": "Commandes",
+    "totalOrders": "Total commandes",
+    "pending": "En attente",
+    "inProgress": "En cours",
+    "delivered": "Livrées",
+    "revenue": "Chiffre d'affaires",
+    "noOrders": "Aucune commande pour le moment.",
+    "orderDetail": "Détail de la commande",
+    "changeStatus": "Changer le statut",
+    "internalNotes": "Notes internes",
+    "saveNotes": "Sauvegarder",
+    "downloadFiles": "Télécharger les fichiers",
+    "contactWhatsApp": "Contacter sur WhatsApp",
+    "settings": "Paramètres",
+    "priceSettings": "Configuration des tarifs",
+    "reportPrice": "Prix rapport de stage",
+    "powerpointPrice": "Prix PowerPoint",
+    "packPrice": "Prix pack complet",
+    "savePrices": "Sauvegarder les tarifs",
+    "filterAll": "Toutes",
+    "search": "Rechercher..."
+  }
+}

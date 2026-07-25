@@ -1,0 +1,250 @@
+{
+  "common": {
+    "brandName": "FTP",
+    "brandFullName": "FaisToiPlaisir",
+    "orderNow": "Order my report",
+    "seeTemplates": "See our work",
+    "whatsappChat": "Chat on WhatsApp",
+    "loading": "Loading...",
+    "next": "Next",
+    "previous": "Previous",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "download": "Download",
+    "close": "Close",
+    "yes": "Yes",
+    "no": "No",
+    "required": "Required",
+    "optional": "Optional",
+    "language": "Language",
+    "french": "Français",
+    "english": "English"
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "templates": "Portfolio",
+    "testimonials": "Testimonials",
+    "faq": "FAQ",
+    "order": "Order",
+    "tracking": "Tracking",
+    "admin": "Admin"
+  },
+  "hero": {
+    "title": "Your internship report,",
+    "titleHighlight": "written by an expert.",
+    "subtitle": "Focus on your defense. We'll handle the rest. Receive a professional, complete report ready to print.",
+    "cta": "Order my report",
+    "ctaSecondary": "See our work",
+    "badge": "🎓 200+ reports successfully delivered"
+  },
+  "howItWorks": {
+    "title": "How does it work?",
+    "subtitle": "A simple 3-step process to get your professional internship report.",
+    "step1Title": "Fill in the form",
+    "step1Desc": "Share your internship details: topic, company, tasks completed, and your school's requirements.",
+    "step2Title": "Validate and pay",
+    "step2Desc": "Review your order, choose your options (Report, PowerPoint, or Full Pack) and make the payment.",
+    "step3Title": "Receive your report",
+    "step3Desc": "Your professional report is delivered on time, ready to be printed and defended."
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Premium services tailored to your academic needs.",
+    "report": {
+      "name": "Internship Report",
+      "desc": "Complete writing of your report from A to Z",
+      "features": [
+        "Professional cover page",
+        "Structured table of contents",
+        "Introduction & Conclusion",
+        "Detailed report body",
+        "Bibliography & Appendices",
+        "Polished formatting"
+      ]
+    },
+    "powerpoint": {
+      "name": "Defense PowerPoint",
+      "desc": "Professional slideshow for your defense",
+      "features": [
+        "15 to 25 premium slides",
+        "Modern, clean design",
+        "Subtle animations",
+        "Charts and visuals",
+        "Speaker notes",
+        "Compatible format"
+      ]
+    },
+    "pack": {
+      "name": "Full Pack",
+      "desc": "Report + PowerPoint at a reduced price",
+      "features": [
+        "Complete internship report",
+        "Defense PowerPoint",
+        "Guaranteed visual consistency",
+        "Exclusive discount",
+        "Priority support",
+        "Revisions included"
+      ]
+    },
+    "priceLabel": "Starting from",
+    "priceTBD": "Price on request",
+    "popular": "Popular",
+    "choosePlan": "Choose this plan"
+  },
+  "templates": {
+    "title": "Our Portfolio",
+    "subtitle": "Discover some examples of reports and presentations we've produced.",
+    "pages": "pages",
+    "viewMore": "View preview"
+  },
+  "testimonials": {
+    "title": "What our clients say",
+    "subtitle": "Satisfied students across the country."
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Everything you need to know about our services.",
+    "items": [
+      {
+        "q": "How does the ordering process work?",
+        "a": "It's simple! Fill in our online form with your internship details, choose the desired service, then make the payment. We handle the writing and deliver the finalized report."
+      },
+      {
+        "q": "How long will it take to receive my report?",
+        "a": "The delivery time depends on the complexity and length of the report. Generally, expect between 5 to 10 business days. We'll keep you updated on progress via WhatsApp."
+      },
+      {
+        "q": "Is my data confidential?",
+        "a": "Absolutely! All your personal and academic information is strictly confidential. We never share our clients' data with third parties."
+      },
+      {
+        "q": "Can I request revisions?",
+        "a": "Yes, we offer revisions after delivering the first version. You can share your feedback via WhatsApp and we'll adjust the report accordingly."
+      },
+      {
+        "q": "How does payment work?",
+        "a": "We accept payments via Mobile Money (MTN MoMo, Orange Money). Payment details will be communicated after you submit your order."
+      },
+      {
+        "q": "What's included in the PowerPoint Pack?",
+        "a": "The PowerPoint Pack includes a slideshow of 15 to 25 slides with professional design, subtle animations, relevant charts, and speaker notes to help you during your defense."
+      }
+    ]
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "tagline": "Your partner for professional internship reports.",
+    "contact": "Contact",
+    "legal": "Legal notice",
+    "privacy": "Privacy",
+    "terms": "Terms"
+  },
+  "order": {
+    "title": "Order a service",
+    "subtitle": "Fill in the form below to place your order.",
+    "step1": "Personal info",
+    "step2": "Your internship",
+    "step3": "The project",
+    "step4": "Documents",
+    "step5": "Services",
+    "fullName": "Full name",
+    "email": "Email address",
+    "phone": "Phone (WhatsApp)",
+    "school": "School / University",
+    "fieldOfStudy": "Field / Specialization",
+    "studyLevel": "Study level",
+    "studyLevels": {
+      "bts": "BTS / Associate",
+      "licence": "Bachelor's",
+      "master": "Master's",
+      "ingenieur": "Engineering",
+      "other": "Other"
+    },
+    "companyName": "Company name",
+    "companySector": "Industry sector",
+    "internshipDuration": "Internship duration",
+    "department": "Department",
+    "supervisorName": "Supervisor name",
+    "positionHeld": "Position held",
+    "reportTheme": "Report theme",
+    "problematic": "Problematic",
+    "objectives": "Internship objectives",
+    "tasksDone": "Tasks completed",
+    "tasksDoneHint": "Describe in detail the tasks and missions carried out during your internship (minimum 50 characters)",
+    "difficulties": "Difficulties encountered",
+    "results": "Results / Achievements",
+    "schoolGuidelines": "School-specific guidelines",
+    "schoolGuidelinesHint": "Required outline, number of pages, format requirements, etc.",
+    "uploadTitle": "Supporting documents",
+    "uploadDesc": "Drag your files here or click to select",
+    "uploadFormats": "PDF, DOCX, DOC, JPG, PNG — Max 30 MB per file",
+    "uploadSuggestions": "Internship notes, org chart, school guidelines, screenshots...",
+    "maxFiles": "Maximum 10 files",
+    "serviceChoice": "Choose your service",
+    "specialRequests": "Special requests or comments",
+    "specialRequestsHint": "Additional information, preferred deadline, etc.",
+    "summary": "Order summary",
+    "confirmOrder": "Confirm order",
+    "orderSuccess": "Order sent successfully!",
+    "orderRef": "Your order number:",
+    "orderNextSteps": "We will contact you on WhatsApp to confirm payment details and delivery timeline.",
+    "goToWhatsApp": "Contact us on WhatsApp",
+    "goToTracking": "Track my order"
+  },
+  "tracking": {
+    "title": "Track my order",
+    "subtitle": "Enter your order number and email to see the progress.",
+    "orderRef": "Order number",
+    "orderRefPlaceholder": "Ex: CMD-2026-0001",
+    "email": "Email address",
+    "search": "Search",
+    "notFound": "No order found with this information.",
+    "status": "Current status",
+    "orderDate": "Order date",
+    "estimatedDelivery": "Estimated delivery",
+    "theme": "Theme",
+    "services": "Services ordered",
+    "files": "Documents sent",
+    "whatsappFollow": "Chat on WhatsApp",
+    "statuses": {
+      "brouillon": "Draft",
+      "en_attente_paiement": "Awaiting payment",
+      "paiement_valide": "Payment confirmed",
+      "en_cours": "Writing in progress",
+      "premiere_version": "First version sent",
+      "en_correction": "Under revision",
+      "termine": "Completed / Delivered"
+    }
+  },
+  "admin": {
+    "title": "FTP Administration",
+    "login": "Admin login",
+    "password": "Password",
+    "loginBtn": "Sign in",
+    "logout": "Sign out",
+    "dashboard": "Dashboard",
+    "orders": "Orders",
+    "totalOrders": "Total orders",
+    "pending": "Pending",
+    "inProgress": "In progress",
+    "delivered": "Delivered",
+    "revenue": "Revenue",
+    "noOrders": "No orders yet.",
+    "orderDetail": "Order detail",
+    "changeStatus": "Change status",
+    "internalNotes": "Internal notes",
+    "saveNotes": "Save",
+    "downloadFiles": "Download files",
+    "contactWhatsApp": "Contact on WhatsApp",
+    "settings": "Settings",
+    "priceSettings": "Price settings",
+    "reportPrice": "Report price",
+    "powerpointPrice": "PowerPoint price",
+    "packPrice": "Full pack price",
+    "savePrices": "Save prices",
+    "filterAll": "All",
+    "search": "Search..."
+  }
+}
