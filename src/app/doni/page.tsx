@@ -18,6 +18,7 @@ import {
   updateAdminPassword
 } from "@/lib/store";
 import { Order, ORDER_STATUS_LIST, PriceSettings, ServiceType, OrderStatus } from "@/types/order";
+import { supabase } from "@/lib/supabase";
 
 export default function AdminPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -38,9 +39,11 @@ export default function AdminPage() {
     }
   }, []);
 
-  const loadData = () => {
-    setOrders(getAllOrders());
-    setPrices(getPriceSettings());
+  const loadData = async () => {
+    const fetchedOrders = await getAllOrders();
+    setOrders(fetchedOrders);
+    const fetchedPrices = await getPriceSettings();
+    setPrices(fetchedPrices);
   };
 
   const handleLogin = (e: React.FormEvent) => {
@@ -60,9 +63,9 @@ export default function AdminPage() {
     setPassword("");
   };
 
-  const handleStatusChange = (orderId: string, newStatus: OrderStatus) => {
-    const success = updateOrderStatus(orderId, newStatus);
-    if (success) loadData();
+  const handleStatusChange = async (orderId: string, newStatus: OrderStatus) => {
+    await updateOrderStatus(orderId, newStatus);
+    loadData();
   };
 
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,8 +73,13 @@ export default function AdminPage() {
     setPrices(prev => ({ ...prev, [name]: Number(value) }));
   };
 
-  const saveSettings = () => {
-    updatePriceSettings(prices);
+  const saveSettings = async () => {
+    const success = await updatePriceSettings(prices);
+    if (!success) {
+      alert("Erreur lors de l'enregistrement des prix. Avez-vous exécuté le script SQL pour créer la table 'settings' dans Supabase ?");
+      return;
+    }
+    
     let passwordChanged = false;
     if (newPassword) {
       if (newPassword.length < 6) {
@@ -188,11 +196,76 @@ export default function AdminPage() {
                               <div className="text-sm text-[#8888a0]">{order.school} ({order.studyLevel})</div>
                             </div>
                             <div>
-                              <div className="text-xs text-[#5a5a72]">Service & Prix</div>
+                              <div className="text-xs text-slate-500">Service & Prix</div>
                               <div className="font-medium capitalize">{order.serviceType}</div>
-                              <div className="text-[#06b6d4] font-bold">{order.totalPrice > 0 ? `${order.totalPrice} FCFA` : "Sur devis"}</div>
+                              <div className="text-cyan-500 font-bold">{order.totalPrice && order.totalPrice > 0 ? `${order.totalPrice} FCFA` : "Sur devis"}</div>
                             </div>
                           </div>
+                          
+                          {/* Fichiers uploadés */}
+                          {order.files && order.files.length > 0 && (
+                            <div className="mt-4 pt-4 border-t border-[#22223a]">
+                              <div className="text-xs text-[#5a5a72] mb-2 font-semibold uppercase tracking-wider">Documents rattachés ({order.files.length})</div>
+                              <div className="flex flex-col gap-2">
+                                {order.files.map(f => {
+                                  const getSignedUrl = async () => {
+                                    const url = f.fileUrl;
+                                    const storagePathMatch = url.match(/\/object\/public\/order_documents\/(.+)$/);
+                                    if (storagePathMatch) {
+                                      const storagePath = decodeURIComponent(storagePathMatch[1]);
+                                      const { data } = await supabase.storage
+                                        .from('order_documents')
+                                        .createSignedUrl(storagePath, 3600);
+                                      return data?.signedUrl || url;
+                                    }
+                                    return url;
+                                  };
+
+                                  return (
+                                    <div key={f.id} className="flex items-center gap-2 p-2 bg-[#06b6d4]/5 rounded border border-[#06b6d4]/10">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+                                      <span className="text-sm text-[#f0f0f5] truncate flex-1">{f.fileName}</span>
+                                      
+                                      {/* Ouvrir */}
+                                      <button
+                                        onClick={async () => {
+                                          const url = await getSignedUrl();
+                                          window.open(url, '_blank');
+                                        }}
+                                        className="flex items-center gap-1 text-xs text-[#06b6d4] hover:text-[#0891b2] bg-[#06b6d4]/10 hover:bg-[#06b6d4]/20 px-2.5 py-1.5 rounded transition-colors flex-shrink-0"
+                                        title="Ouvrir dans un nouvel onglet"
+                                      >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+                                        Ouvrir
+                                      </button>
+                                      
+                                      {/* Télécharger */}
+                                      <button
+                                        onClick={async () => {
+                                          const url = await getSignedUrl();
+                                          const res = await fetch(url);
+                                          const blob = await res.blob();
+                                          const blobUrl = URL.createObjectURL(blob);
+                                          const link = document.createElement('a');
+                                          link.href = blobUrl;
+                                          link.download = f.fileName;
+                                          document.body.appendChild(link);
+                                          link.click();
+                                          document.body.removeChild(link);
+                                          URL.revokeObjectURL(blobUrl);
+                                        }}
+                                        className="flex items-center gap-1 text-xs text-[#7c3aed] hover:text-[#6d28d9] bg-[#7c3aed]/10 hover:bg-[#7c3aed]/20 px-2.5 py-1.5 rounded transition-colors flex-shrink-0"
+                                        title="Télécharger le fichier"
+                                      >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                                        Télécharger
+                                      </button>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          )}
                         </div>
                         
                         <div className="md:w-64 border-t md:border-t-0 md:border-l border-[#22223a] pt-4 md:pt-0 md:pl-6 flex flex-col justify-center">
@@ -204,10 +277,12 @@ export default function AdminPage() {
                           >
                             {ORDER_STATUS_LIST.map(s => (
                               <option key={s} value={s}>
-                                {s === "pending" ? "En attente" : 
-                                 s === "accepted" ? "Acceptée" :
-                                 s === "in_progress" ? "En cours de rédaction" :
-                                 s === "review" ? "En révision" : "Terminée"}
+                                {s === "en_attente_paiement" ? "En attente de paiement" : 
+                                 s === "paiement_valide" ? "Paiement validé" :
+                                 s === "en_cours" ? "En cours de rédaction" :
+                                 s === "premiere_version" ? "Première version" :
+                                 s === "en_correction" ? "En correction" :
+                                 s === "brouillon" ? "Brouillon" : "Terminée"}
                               </option>
                             ))}
                           </select>

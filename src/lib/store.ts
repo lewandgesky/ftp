@@ -1,124 +1,175 @@
 import { Order, OrderFile, PriceSettings, OrderStatus } from "@/types/order";
+import { supabase } from "./supabase";
 
-const ORDERS_KEY = "ftp-orders";
 const SETTINGS_KEY = "ftp-settings";
 const ADMIN_KEY = "ftp-admin-auth";
-const ORDER_COUNTER_KEY = "ftp-order-counter";
+const ADMIN_PASS_KEY = "ftp-admin-pass";
+const DEFAULT_ADMIN_PASS = "admin2026";
 
-// ==================== ORDER MANAGEMENT ====================
+// ==================== ORDER MANAGEMENT (SUPABASE) ====================
 
-export function generateOrderRef(): string {
-  if (typeof window === "undefined") return "CMD-0000-0001";
-  const counter = parseInt(localStorage.getItem(ORDER_COUNTER_KEY) || "0", 10) + 1;
-  localStorage.setItem(ORDER_COUNTER_KEY, counter.toString());
+export async function generateOrderRef(): Promise<string> {
   const year = new Date().getFullYear();
-  return `CMD-${year}-${counter.toString().padStart(4, "0")}`;
+  // Get count of orders this year to generate sequential ref
+  const { count, error } = await supabase
+    .from('orders')
+    .select('*', { count: 'exact', head: true })
+    .like('orderRef', `CMD-${year}-%`);
+  
+  const currentCount = (count || 0) + 1;
+  return `CMD-${year}-${currentCount.toString().padStart(4, "0")}`;
 }
 
-export function getOrders(): Order[] {
-  if (typeof window === "undefined") return [];
-  try {
-    const data = localStorage.getItem(ORDERS_KEY);
-    return data ? JSON.parse(data) : [];
-  } catch {
+export async function getOrders(): Promise<Order[]> {
+  const { data, error } = await supabase
+    .from('orders')
+    .select('*')
+    .order('createdAt', { ascending: false });
+    
+  if (error) {
+    console.error('Error fetching orders:', error);
     return [];
   }
+  return data as Order[];
 }
 
-export function getOrderByRef(orderRef: string): Order | undefined {
-  return getOrders().find((o) => o.orderRef === orderRef);
+export async function getOrderByRef(orderRef: string): Promise<Order | undefined> {
+  const { data, error } = await supabase
+    .from('orders')
+    .select('*')
+    .eq('orderRef', orderRef)
+    .single();
+    
+  if (error) return undefined;
+  return data as Order;
 }
 
-export function getOrderByRefAndEmail(orderRef: string, email: string): Order | undefined {
-  return getOrders().find(
-    (o) => o.orderRef.toLowerCase() === orderRef.toLowerCase() && o.email.toLowerCase() === email.toLowerCase()
-  );
+export async function getOrderByRefAndEmail(orderRef: string, email: string): Promise<Order | undefined> {
+  const { data, error } = await supabase
+    .from('orders')
+    .select('*')
+    .ilike('orderRef', orderRef)
+    .ilike('email', email)
+    .single();
+    
+  if (error) return undefined;
+  return data as Order;
 }
 
-export function saveOrder(order: Order): void {
-  if (typeof window === "undefined") return;
-  const orders = getOrders();
-  const index = orders.findIndex((o) => o.id === order.id);
-  if (index >= 0) {
-    orders[index] = { ...order, updatedAt: new Date().toISOString() };
-  } else {
-    orders.push(order);
-  }
-  localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
-}
-
-export function createOrder(orderData: Omit<Order, "id" | "orderRef" | "status" | "files" | "createdAt" | "updatedAt">): Order {
+export async function createOrder(orderData: Omit<Order, "id" | "orderRef" | "status" | "files" | "createdAt" | "updatedAt">): Promise<Order> {
+  const orderRef = await generateOrderRef();
   const now = new Date().toISOString();
-  const order: Order = {
+  
+  const newOrder = {
     ...orderData,
-    id: crypto.randomUUID(),
-    orderRef: generateOrderRef(),
+    orderRef,
     status: "en_attente_paiement",
     files: [],
     createdAt: now,
     updatedAt: now,
   };
-  saveOrder(order);
-  return order;
-}
 
-export function updateOrderStatus(orderId: string, status: OrderStatus): void {
-  const orders = getOrders();
-  const order = orders.find((o) => o.id === orderId);
-  if (order) {
-    order.status = status;
-    order.updatedAt = new Date().toISOString();
-    localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
+  const { data, error } = await supabase
+    .from('orders')
+    .insert([newOrder])
+    .select()
+    .single();
+    
+  if (error) {
+    console.error('Error creating order:', error);
+    throw error;
   }
+  
+  return data as Order;
 }
 
-export function updateOrderNotes(orderId: string, notes: string): void {
-  const orders = getOrders();
-  const order = orders.find((o) => o.id === orderId);
-  if (order) {
-    order.adminNotes = notes;
-    order.updatedAt = new Date().toISOString();
-    localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
+export async function updateOrderStatus(orderId: string, status: OrderStatus): Promise<void> {
+  const { error } = await supabase
+    .from('orders')
+    .update({ status, updatedAt: new Date().toISOString() })
+    .eq('id', orderId);
+    
+  if (error) console.error('Error updating status:', error);
+}
+
+export async function updateOrderNotes(orderId: string, notes: string): Promise<void> {
+  const { error } = await supabase
+    .from('orders')
+    .update({ adminNotes: notes, updatedAt: new Date().toISOString() })
+    .eq('id', orderId);
+    
+  if (error) console.error('Error updating notes:', error);
+}
+
+export async function addFilesToOrder(orderId: string, files: OrderFile[]): Promise<void> {
+  // Get current files first
+  const { data: order } = await supabase
+    .from('orders')
+    .select('files')
+    .eq('id', orderId)
+    .single();
+    
+  const currentFiles = order?.files || [];
+  
+  const { error } = await supabase
+    .from('orders')
+    .update({ 
+      files: [...currentFiles, ...files], 
+      updatedAt: new Date().toISOString() 
+    })
+    .eq('id', orderId);
+    
+  if (error) console.error('Error adding files:', error);
+}
+
+// ==================== PRICE SETTINGS (SUPABASE) ====================
+
+export async function getPriceSettings(): Promise<PriceSettings> {
+  const defaultPrices = { reportPrice: 0, powerpointPrice: 0, packPrice: 0 };
+  
+  const { data, error } = await supabase
+    .from('settings')
+    .select('*')
+    .eq('id', 'prices')
+    .single();
+    
+  if (error) {
+    console.error('Error fetching prices:', error);
+    return defaultPrices;
   }
-}
-
-export function addFilesToOrder(orderId: string, files: OrderFile[]): void {
-  const orders = getOrders();
-  const order = orders.find((o) => o.id === orderId);
-  if (order) {
-    order.files = [...order.files, ...files];
-    order.updatedAt = new Date().toISOString();
-    localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
+  
+  if (data) {
+    return {
+      reportPrice: data.reportPrice,
+      powerpointPrice: data.powerpointPrice,
+      packPrice: data.packPrice
+    };
   }
+  
+  return defaultPrices;
 }
 
-// ==================== PRICE SETTINGS ====================
-
-export function getPriceSettings(): PriceSettings {
-  if (typeof window === "undefined") {
-    return { reportPrice: 0, powerpointPrice: 0, packPrice: 0 };
+export async function savePriceSettings(settings: PriceSettings): Promise<boolean> {
+  const { error } = await supabase
+    .from('settings')
+    .upsert({
+      id: 'prices',
+      reportPrice: Number(settings.reportPrice),
+      powerpointPrice: Number(settings.powerpointPrice),
+      packPrice: Number(settings.packPrice),
+      updatedAt: new Date().toISOString()
+    });
+    
+  if (error) {
+    console.error('Error saving prices:', error);
+    return false;
   }
-  try {
-    const data = localStorage.getItem(SETTINGS_KEY);
-    return data ? JSON.parse(data) : { reportPrice: 0, powerpointPrice: 0, packPrice: 0 };
-  } catch {
-    return { reportPrice: 0, powerpointPrice: 0, packPrice: 0 };
-  }
+  return true;
 }
 
-export function savePriceSettings(settings: PriceSettings): void {
-  if (typeof window === "undefined") return;
-  localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
-}
-
-// ==================== ADMIN AUTH (MVP - localStorage based) ====================
-
-const ADMIN_PASS_KEY = "ftp-admin-pass";
-const DEFAULT_ADMIN_PASS = "admin2026";
+// ==================== ADMIN AUTH (Local Storage MVP) ====================
 
 function hashPassword(password: string): string {
-  // Simple encoding for MVP - NOT cryptographically secure
-  // In production, use bcrypt on the server side
   return btoa(encodeURIComponent(password));
 }
 
@@ -126,7 +177,6 @@ function getStoredPassword(): string {
   if (typeof window === "undefined") return hashPassword(DEFAULT_ADMIN_PASS);
   const stored = localStorage.getItem(ADMIN_PASS_KEY);
   if (!stored) {
-    // Initialize with default password on first visit
     const hashed = hashPassword(DEFAULT_ADMIN_PASS);
     localStorage.setItem(ADMIN_PASS_KEY, hashed);
     return hashed;
@@ -153,6 +203,14 @@ export function adminLogout(): void {
   sessionStorage.removeItem(ADMIN_KEY);
 }
 
+export function updateAdminPassword(newPassword: string): boolean {
+  if (typeof window === "undefined") return false;
+  if (!newPassword || newPassword.length < 6) return false;
+  const hashed = hashPassword(newPassword);
+  localStorage.setItem(ADMIN_PASS_KEY, hashed);
+  return true;
+}
+
 // ==================== WHATSAPP HELPERS ====================
 
 const WHATSAPP_NUMBER = "237659605092";
@@ -171,8 +229,8 @@ export function getWhatsAppContactLink(clientName: string, orderRef: string): st
 
 // ==================== STATS HELPERS ====================
 
-export function getOrderStats() {
-  const orders = getOrders();
+export async function getOrderStats() {
+  const orders = await getOrders();
   return {
     total: orders.length,
     pending: orders.filter((o) => o.status === "en_attente_paiement").length,
@@ -191,12 +249,3 @@ export const getAllOrders = getOrders;
 export const loginAdmin = adminLogin;
 export const logoutAdmin = adminLogout;
 export const updatePriceSettings = savePriceSettings;
-
-export function updateAdminPassword(newPassword: string): boolean {
-  if (typeof window === "undefined") return false;
-  if (!newPassword || newPassword.length < 6) return false;
-  const hashed = hashPassword(newPassword);
-  localStorage.setItem(ADMIN_PASS_KEY, hashed);
-  return true;
-}
-

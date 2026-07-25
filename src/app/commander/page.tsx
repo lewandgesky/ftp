@@ -10,7 +10,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
-import { createOrder, getPriceSettings } from "@/lib/store";
+import { createOrder, getPriceSettings, addFilesToOrder } from "@/lib/store";
+import { supabase } from "@/lib/supabase";
 import { StudyLevel, ServiceType } from "@/types/order";
 
 function OrderFormContent() {
@@ -22,7 +23,11 @@ function OrderFormContent() {
   const [step, setStep] = useState(1);
   const totalSteps = 5;
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const prices = getPriceSettings();
+  const [prices, setPrices] = useState({ reportPrice: 0, powerpointPrice: 0, packPrice: 0 });
+
+  useEffect(() => {
+    getPriceSettings().then(setPrices);
+  }, []);
 
   // Form State
   const [formData, setFormData] = useState({
@@ -81,9 +86,9 @@ function OrderFormContent() {
       case 1:
         return formData.fullName.length > 1 && formData.email.includes("@") && formData.phone.length > 5 && formData.school && formData.fieldOfStudy;
       case 2:
-        return formData.companyName && formData.companySector && formData.internshipDuration;
+        return true;
       case 3:
-        return formData.reportTheme && formData.tasksDone.length >= 50;
+        return true;
       case 4:
         return true; // Files are optional
       case 5:
@@ -118,37 +123,85 @@ function OrderFormContent() {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
-    // Simulate API delay
-    await new Promise(r => setTimeout(r, 1500));
     
-    // Create order in store
-    const order = createOrder({
-      fullName: formData.fullName,
-      email: formData.email,
-      phone: formData.phone,
-      school: formData.school,
-      fieldOfStudy: formData.fieldOfStudy,
-      studyLevel: formData.studyLevel,
-      companyName: formData.companyName,
-      companySector: formData.companySector,
-      internshipDuration: formData.internshipDuration,
-      department: formData.department,
-      supervisorName: formData.supervisorName,
-      positionHeld: formData.positionHeld,
-      reportTheme: formData.reportTheme,
-      problematic: formData.problematic,
-      objectives: formData.objectives,
-      tasksDone: formData.tasksDone,
-      difficulties: formData.difficulties,
-      results: formData.results,
-      schoolGuidelines: formData.schoolGuidelines,
-      serviceType: formData.serviceType,
-      specialRequests: formData.specialRequests,
-      totalPrice: calculateTotal(),
-      // mock saving files URL
-    });
+    try {
+      // Create order first
+      const order = await createOrder({
+        fullName: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        school: formData.school,
+        fieldOfStudy: formData.fieldOfStudy,
+        studyLevel: formData.studyLevel,
+        companyName: formData.companyName || "Non renseigné",
+        companySector: formData.companySector || "Non renseigné",
+        internshipDuration: formData.internshipDuration || "Non renseigné",
+        department: formData.department || "Non renseigné",
+        supervisorName: formData.supervisorName || "Non renseigné",
+        positionHeld: formData.positionHeld || "Non renseigné",
+        reportTheme: formData.reportTheme || "Non renseigné",
+        problematic: formData.problematic || "Non renseigné",
+        objectives: formData.objectives || "Non renseigné",
+        tasksDone: formData.tasksDone || "Non renseigné",
+        difficulties: formData.difficulties || "Non renseigné",
+        results: formData.results || "Non renseigné",
+        schoolGuidelines: formData.schoolGuidelines || "Non renseigné",
+        serviceType: formData.serviceType,
+        specialRequests: formData.specialRequests || "Non renseigné",
+        totalPrice: calculateTotal(),
+      });
+      
+      // Upload files to Supabase Storage if any
+      if (formData.files.length > 0) {
+        const uploadedFiles = [];
+        let uploadErrors = 0;
+        
+        for (const file of formData.files) {
+          const fileExt = file.name.split('.').pop();
+          const safeName = `${order.orderRef}/${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
+          
+          const { data, error } = await supabase.storage
+            .from('order_documents')
+            .upload(safeName, file, {
+              cacheControl: '3600',
+              upsert: true,
+            });
+            
+          if (data) {
+            const { data: urlData } = supabase.storage
+              .from('order_documents')
+              .getPublicUrl(safeName);
+              
+            uploadedFiles.push({
+              id: crypto.randomUUID(),
+              orderId: order.id,
+              fileName: file.name,
+              fileUrl: urlData.publicUrl,
+              fileSize: file.size,
+              fileType: file.type || fileExt || "unknown",
+              createdAt: new Date().toISOString()
+            });
+          } else {
+            uploadErrors++;
+            console.error("File upload error:", error);
+          }
+        }
+        
+        if (uploadedFiles.length > 0) {
+          await addFilesToOrder(order.id, uploadedFiles);
+        }
+        
+        if (uploadErrors > 0) {
+          alert(`${uploadErrors} fichier(s) n'ont pas pu être uploadés. Votre commande a quand même été créée. Vous pourrez renvoyer les fichiers via WhatsApp.`);
+        }
+      }
 
-    router.push(`/commander/succes?ref=${order.orderRef}`);
+      router.push(`/commander/succes?ref=${order.orderRef}`);
+    } catch (err) {
+      console.error("Order creation error:", err);
+      alert("Une erreur est survenue lors de la création de votre commande. Veuillez réessayer.");
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -230,19 +283,21 @@ function OrderFormContent() {
           {/* STEP 2: Internship Info */}
           {step === 2 && (
             <div className="space-y-6 animate-fade-in">
-              <h2 className="text-xl font-semibold border-b border-[#22223a] pb-3 mb-6">{t("order.step2")}</h2>
+              <h2 className="text-xl font-semibold border-b border-[#22223a] pb-3 mb-6">
+                {t("order.step2")} <span className="text-sm font-normal text-[#94a3b8] ml-2">(Optionnel)</span>
+              </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label htmlFor="companyName">{t("order.companyName")} <span className="text-red-500">*</span></Label>
+                  <Label htmlFor="companyName">{t("order.companyName")}</Label>
                   <Input id="companyName" name="companyName" value={formData.companyName} onChange={handleChange} />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="companySector">{t("order.companySector")} <span className="text-red-500">*</span></Label>
+                  <Label htmlFor="companySector">{t("order.companySector")}</Label>
                   <Input id="companySector" name="companySector" value={formData.companySector} onChange={handleChange} />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="internshipDuration">{t("order.internshipDuration")} <span className="text-red-500">*</span></Label>
+                  <Label htmlFor="internshipDuration">{t("order.internshipDuration")}</Label>
                   <Input id="internshipDuration" name="internshipDuration" placeholder="Ex: 3 mois" value={formData.internshipDuration} onChange={handleChange} />
                 </div>
                 <div className="space-y-2">
@@ -264,16 +319,18 @@ function OrderFormContent() {
           {/* STEP 3: Project Info */}
           {step === 3 && (
             <div className="space-y-6 animate-fade-in">
-              <h2 className="text-xl font-semibold border-b border-[#22223a] pb-3 mb-6">{t("order.step3")}</h2>
+              <h2 className="text-xl font-semibold border-b border-[#22223a] pb-3 mb-6">
+                {t("order.step3")} <span className="text-sm font-normal text-[#94a3b8] ml-2">(Optionnel)</span>
+              </h2>
               
               <div className="space-y-6">
                 <div className="space-y-2">
-                  <Label htmlFor="reportTheme">{t("order.reportTheme")} <span className="text-red-500">*</span></Label>
+                  <Label htmlFor="reportTheme">{t("order.reportTheme")}</Label>
                   <Input id="reportTheme" name="reportTheme" value={formData.reportTheme} onChange={handleChange} />
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="tasksDone">{t("order.tasksDone")} <span className="text-red-500">*</span></Label>
+                  <Label htmlFor="tasksDone">{t("order.tasksDone")}</Label>
                   <p className="text-xs text-[#8888a0]">{t("order.tasksDoneHint")}</p>
                   <Textarea id="tasksDone" name="tasksDone" className="min-h-[120px]" value={formData.tasksDone} onChange={handleChange} />
                 </div>

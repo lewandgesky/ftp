@@ -9,7 +9,11 @@ import { getPriceSettings } from "@/lib/store";
 
 export function Services() {
   const { t } = useTranslation();
-  const prices = getPriceSettings();
+  const [prices, setPrices] = React.useState({ reportPrice: 0, powerpointPrice: 0, packPrice: 0 });
+
+  React.useEffect(() => {
+    getPriceSettings().then(setPrices);
+  }, []);
 
   const services = [
     {

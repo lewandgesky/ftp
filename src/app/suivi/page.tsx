@@ -30,21 +30,19 @@ function TrackingContent() {
     }
   }, []);
 
-  const handleSearch = (e?: React.FormEvent) => {
+  const handleSearch = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     setIsSearching(true);
     setError(false);
     
-    setTimeout(() => {
-      const found = getOrderByRefAndEmail(orderRef, email);
-      if (found) {
-        setOrder(found);
-      } else {
-        setOrder(null);
-        setError(true);
-      }
-      setIsSearching(false);
-    }, 800);
+    const found = await getOrderByRefAndEmail(orderRef, email);
+    if (found) {
+      setOrder(found);
+    } else {
+      setOrder(null);
+      setError(true);
+    }
+    setIsSearching(false);
   };
 
   const getStatusIndex = (status: string) => {
