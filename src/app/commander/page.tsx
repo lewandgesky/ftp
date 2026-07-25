@@ -155,7 +155,7 @@ function OrderFormContent() {
     <div className="container mx-auto px-4 md:px-6 py-24 md:py-32 max-w-3xl">
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">{t("order.title")}</h1>
-        <p className="text-[#8888a0]">{t("order.subtitle")}</p>
+        <p className="text-[#94a3b8]">{t("order.subtitle")}</p>
       </div>
 
       {/* Progress bar */}
@@ -164,27 +164,27 @@ function OrderFormContent() {
           {[1, 2, 3, 4, 5].map((s) => (
             <div 
               key={s} 
-              className={`text-xs font-medium ${s <= step ? 'text-[#7c3aed]' : 'text-[#5a5a72]'}`}
+              className={`text-xs font-medium ${s <= step ? 'text-[#8b5cf6]' : 'text-[#64748b]'}`}
             >
               Étape {s}
             </div>
           ))}
         </div>
-        <div className="w-full bg-[#1a1a2e] rounded-full h-2">
+        <div className="w-full bg-[#1e293b] rounded-full h-2">
           <div 
-            className="bg-gradient-to-r from-[#7c3aed] to-[#06b6d4] h-2 rounded-full transition-all duration-300"
+            className="bg-gradient-to-r from-[#8b5cf6] to-[#22d3ee] h-2 rounded-full transition-all duration-300"
             style={{ width: `${((step - 1) / (totalSteps - 1)) * 100}%` }}
           ></div>
         </div>
       </div>
 
-      <Card className="bg-[#0a0a0f] border-[#2a2a3e]">
+      <Card className="bg-[#0f172a] border-[#334155]">
         <CardContent className="p-6 md:p-8">
           
           {/* STEP 1: Personal Info */}
           {step === 1 && (
             <div className="space-y-6 animate-fade-in">
-              <h2 className="text-xl font-semibold border-b border-[#2a2a3e] pb-3 mb-6">{t("order.step1")}</h2>
+              <h2 className="text-xl font-semibold border-b border-[#334155] pb-3 mb-6">{t("order.step1")}</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
@@ -214,7 +214,7 @@ function OrderFormContent() {
                     name="studyLevel" 
                     value={formData.studyLevel} 
                     onChange={handleChange}
-                    className="flex h-10 w-full rounded-md border border-[#2a2a3e] bg-[#0a0a0f] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7c3aed] text-[#f0f0f5]"
+                    className="flex h-10 w-full rounded-md border border-[#334155] bg-[#0f172a] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#8b5cf6] text-[#f1f5f9]"
                   >
                     <option value="bts">{t("order.studyLevels.bts")}</option>
                     <option value="licence">{t("order.studyLevels.licence")}</option>
@@ -230,7 +230,7 @@ function OrderFormContent() {
           {/* STEP 2: Internship Info */}
           {step === 2 && (
             <div className="space-y-6 animate-fade-in">
-              <h2 className="text-xl font-semibold border-b border-[#2a2a3e] pb-3 mb-6">{t("order.step2")}</h2>
+              <h2 className="text-xl font-semibold border-b border-[#334155] pb-3 mb-6">{t("order.step2")}</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
@@ -264,7 +264,7 @@ function OrderFormContent() {
           {/* STEP 3: Project Info */}
           {step === 3 && (
             <div className="space-y-6 animate-fade-in">
-              <h2 className="text-xl font-semibold border-b border-[#2a2a3e] pb-3 mb-6">{t("order.step3")}</h2>
+              <h2 className="text-xl font-semibold border-b border-[#334155] pb-3 mb-6">{t("order.step3")}</h2>
               
               <div className="space-y-6">
                 <div className="space-y-2">
@@ -274,7 +274,7 @@ function OrderFormContent() {
                 
                 <div className="space-y-2">
                   <Label htmlFor="tasksDone">{t("order.tasksDone")} <span className="text-red-500">*</span></Label>
-                  <p className="text-xs text-[#8888a0]">{t("order.tasksDoneHint")}</p>
+                  <p className="text-xs text-[#94a3b8]">{t("order.tasksDoneHint")}</p>
                   <Textarea id="tasksDone" name="tasksDone" className="min-h-[120px]" value={formData.tasksDone} onChange={handleChange} />
                 </div>
 
@@ -285,7 +285,7 @@ function OrderFormContent() {
 
                 <div className="space-y-2">
                   <Label htmlFor="schoolGuidelines">{t("order.schoolGuidelines")}</Label>
-                  <p className="text-xs text-[#8888a0]">{t("order.schoolGuidelinesHint")}</p>
+                  <p className="text-xs text-[#94a3b8]">{t("order.schoolGuidelinesHint")}</p>
                   <Textarea id="schoolGuidelines" name="schoolGuidelines" value={formData.schoolGuidelines} onChange={handleChange} />
                 </div>
               </div>
@@ -295,9 +295,9 @@ function OrderFormContent() {
           {/* STEP 4: Documents */}
           {step === 4 && (
             <div className="space-y-6 animate-fade-in">
-              <h2 className="text-xl font-semibold border-b border-[#2a2a3e] pb-3 mb-6">{t("order.step4")}</h2>
+              <h2 className="text-xl font-semibold border-b border-[#334155] pb-3 mb-6">{t("order.step4")}</h2>
               
-              <div className="border-2 border-dashed border-[#2a2a3e] rounded-xl p-8 text-center bg-[#12121a] hover:bg-[#1a1a2e] transition-colors relative">
+              <div className="border-2 border-dashed border-[#334155] rounded-xl p-8 text-center bg-[#1e293b] hover:bg-[#1e293b] transition-colors relative">
                 <input 
                   type="file" 
                   multiple 
@@ -305,23 +305,23 @@ function OrderFormContent() {
                   className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                   accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
                 />
-                <div className="w-12 h-12 rounded-full bg-[#1a1a2e] border border-[#3a3a52] flex items-center justify-center mx-auto mb-4 text-[#7c3aed]">
+                <div className="w-12 h-12 rounded-full bg-[#1e293b] border border-[#475569] flex items-center justify-center mx-auto mb-4 text-[#8b5cf6]">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
                 </div>
                 <p className="font-semibold mb-2">{t("order.uploadTitle")}</p>
-                <p className="text-sm text-[#8888a0] mb-2">{t("order.uploadDesc")}</p>
-                <p className="text-xs text-[#5a5a72]">{t("order.uploadFormats")}</p>
+                <p className="text-sm text-[#94a3b8] mb-2">{t("order.uploadDesc")}</p>
+                <p className="text-xs text-[#64748b]">{t("order.uploadFormats")}</p>
               </div>
 
               {formData.files.length > 0 && (
                 <div className="space-y-3 mt-6">
                   <h3 className="text-sm font-medium">Fichiers sélectionnés :</h3>
                   {formData.files.map((file, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 rounded-lg bg-[#12121a] border border-[#2a2a3e]">
+                    <div key={index} className="flex items-center justify-between p-3 rounded-lg bg-[#1e293b] border border-[#334155]">
                       <div className="flex items-center gap-3 overflow-hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#06b6d4] flex-shrink-0"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#22d3ee] flex-shrink-0"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
                         <span className="text-sm truncate">{file.name}</span>
-                        <span className="text-xs text-[#5a5a72]">{(file.size / 1024 / 1024).toFixed(2)} Mo</span>
+                        <span className="text-xs text-[#64748b]">{(file.size / 1024 / 1024).toFixed(2)} Mo</span>
                       </div>
                       <button onClick={() => removeFile(index)} className="text-red-400 hover:text-red-300 p-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
@@ -336,7 +336,7 @@ function OrderFormContent() {
           {/* STEP 5: Services */}
           {step === 5 && (
             <div className="space-y-6 animate-fade-in">
-              <h2 className="text-xl font-semibold border-b border-[#2a2a3e] pb-3 mb-6">{t("order.step5")}</h2>
+              <h2 className="text-xl font-semibold border-b border-[#334155] pb-3 mb-6">{t("order.step5")}</h2>
               
               <div className="space-y-4">
                 <Label>{t("order.serviceChoice")}</Label>
@@ -351,17 +351,17 @@ function OrderFormContent() {
                       onClick={() => setFormData(prev => ({ ...prev, serviceType: service.id as ServiceType }))}
                       className={`cursor-pointer rounded-xl border p-4 transition-all ${
                         formData.serviceType === service.id 
-                          ? "border-[#7c3aed] bg-[#7c3aed]/10 shadow-glow" 
-                          : "border-[#2a2a3e] bg-[#12121a] hover:border-[#3a3a52]"
+                          ? "border-[#8b5cf6] bg-[#8b5cf6]/10 shadow-glow" 
+                          : "border-[#334155] bg-[#1e293b] hover:border-[#475569]"
                       }`}
                     >
                       <div className="flex items-center justify-between mb-2">
                         <span className="font-semibold text-sm">{service.name}</span>
-                        <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${formData.serviceType === service.id ? "border-[#7c3aed]" : "border-[#5a5a72]"}`}>
-                          {formData.serviceType === service.id && <div className="w-2 h-2 rounded-full bg-[#7c3aed]"></div>}
+                        <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${formData.serviceType === service.id ? "border-[#8b5cf6]" : "border-[#64748b]"}`}>
+                          {formData.serviceType === service.id && <div className="w-2 h-2 rounded-full bg-[#8b5cf6]"></div>}
                         </div>
                       </div>
-                      <div className="text-sm text-[#06b6d4] font-medium">
+                      <div className="text-sm text-[#22d3ee] font-medium">
                         {service.price > 0 ? `${service.price} FCFA` : "Sur devis"}
                       </div>
                     </div>
@@ -371,33 +371,33 @@ function OrderFormContent() {
 
               <div className="space-y-2 mt-6">
                 <Label htmlFor="specialRequests">{t("order.specialRequests")}</Label>
-                <p className="text-xs text-[#8888a0]">{t("order.specialRequestsHint")}</p>
+                <p className="text-xs text-[#94a3b8]">{t("order.specialRequestsHint")}</p>
                 <Textarea id="specialRequests" name="specialRequests" value={formData.specialRequests} onChange={handleChange} />
               </div>
 
               {/* Summary */}
-              <div className="mt-8 p-6 rounded-xl bg-[#12121a] border border-[#2a2a3e]">
-                <h3 className="font-semibold mb-4 border-b border-[#2a2a3e] pb-2">{t("order.summary")}</h3>
+              <div className="mt-8 p-6 rounded-xl bg-[#1e293b] border border-[#334155]">
+                <h3 className="font-semibold mb-4 border-b border-[#334155] pb-2">{t("order.summary")}</h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-[#8888a0]">Client :</span>
+                    <span className="text-[#94a3b8]">Client :</span>
                     <span className="font-medium text-right">{formData.fullName}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[#8888a0]">Thème :</span>
+                    <span className="text-[#94a3b8]">Thème :</span>
                     <span className="font-medium text-right truncate ml-4 max-w-[200px] md:max-w-md">{formData.reportTheme || "-"}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[#8888a0]">Service :</span>
+                    <span className="text-[#94a3b8]">Service :</span>
                     <span className="font-medium text-right">
                       {formData.serviceType === "report" ? t("services.report.name") : 
                        formData.serviceType === "powerpoint" ? t("services.powerpoint.name") : 
                        t("services.pack.name")}
                     </span>
                   </div>
-                  <div className="flex justify-between pt-4 mt-4 border-t border-[#2a2a3e]">
+                  <div className="flex justify-between pt-4 mt-4 border-t border-[#334155]">
                     <span className="font-bold">Total estimé :</span>
-                    <span className="font-bold text-[#06b6d4] text-lg">
+                    <span className="font-bold text-[#22d3ee] text-lg">
                       {calculateTotal() > 0 ? `${calculateTotal()} FCFA` : "Sur devis"}
                     </span>
                   </div>
@@ -407,7 +407,7 @@ function OrderFormContent() {
           )}
 
           {/* Navigation Buttons */}
-          <div className="mt-10 flex justify-between pt-6 border-t border-[#2a2a3e]">
+          <div className="mt-10 flex justify-between pt-6 border-t border-[#334155]">
             <Button 
               type="button" 
               variant="outline" 
@@ -432,7 +432,7 @@ function OrderFormContent() {
                 variant="glow" 
                 onClick={handleSubmit}
                 disabled={!validateStep() || isSubmitting}
-                className="bg-gradient-to-r from-[#10b981] to-[#059669] hover:from-[#059669] hover:to-[#047857]"
+                className="bg-gradient-to-r from-[#34d399] to-[#059669] hover:from-[#059669] hover:to-[#047857]"
               >
                 {isSubmitting ? t("common.loading") : t("order.confirmOrder")}
               </Button>

@@ -19,23 +19,23 @@ function SuccessContent() {
 
   return (
     <div className="container mx-auto px-4 md:px-6 py-24 md:py-32 flex justify-center items-center min-h-[70vh]">
-      <Card className="max-w-lg w-full text-center bg-[#0a0a0f] border-[#10b981]/30 relative overflow-hidden">
+      <Card className="max-w-lg w-full text-center bg-[#0f172a] border-[#34d399]/30 relative overflow-hidden">
         {/* Success glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1/2 bg-[#10b981] blur-[80px] opacity-10 pointer-events-none"></div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1/2 bg-[#34d399] blur-[80px] opacity-10 pointer-events-none"></div>
         
         <CardContent className="p-8 md:p-12">
-          <div className="w-20 h-20 bg-[#10b981]/20 rounded-full flex items-center justify-center mx-auto mb-6 text-[#10b981] border border-[#10b981]/30">
+          <div className="w-20 h-20 bg-[#34d399]/20 rounded-full flex items-center justify-center mx-auto mb-6 text-[#34d399] border border-[#34d399]/30">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           </div>
           
           <h1 className="text-2xl md:text-3xl font-bold mb-4">{t("order.orderSuccess")}</h1>
           
-          <div className="bg-[#1a1a2e] border border-[#2a2a3e] rounded-xl p-4 mb-6 inline-block">
-            <span className="text-sm text-[#8888a0] block mb-1">{t("order.orderRef")}</span>
-            <span className="text-xl font-mono font-bold text-[#f0f0f5]">{orderRef}</span>
+          <div className="bg-[#1e293b] border border-[#334155] rounded-xl p-4 mb-6 inline-block">
+            <span className="text-sm text-[#94a3b8] block mb-1">{t("order.orderRef")}</span>
+            <span className="text-xl font-mono font-bold text-[#f1f5f9]">{orderRef}</span>
           </div>
           
-          <p className="text-[#8888a0] mb-8 leading-relaxed">
+          <p className="text-[#94a3b8] mb-8 leading-relaxed">
             {t("order.orderNextSteps")}
           </p>
           

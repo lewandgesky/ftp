@@ -111,18 +111,38 @@ export function savePriceSettings(settings: PriceSettings): void {
   localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
 }
 
-// ==================== ADMIN AUTH (Simple for MVP) ====================
+// ==================== ADMIN AUTH (MVP - localStorage based) ====================
 
-const ADMIN_PASSWORD = "ftp-admin-2026";
+const ADMIN_PASS_KEY = "ftp-admin-pass";
+const DEFAULT_ADMIN_PASS = "admin2026";
+
+function hashPassword(password: string): string {
+  // Simple encoding for MVP - NOT cryptographically secure
+  // In production, use bcrypt on the server side
+  return btoa(encodeURIComponent(password));
+}
+
+function getStoredPassword(): string {
+  if (typeof window === "undefined") return hashPassword(DEFAULT_ADMIN_PASS);
+  const stored = localStorage.getItem(ADMIN_PASS_KEY);
+  if (!stored) {
+    // Initialize with default password on first visit
+    const hashed = hashPassword(DEFAULT_ADMIN_PASS);
+    localStorage.setItem(ADMIN_PASS_KEY, hashed);
+    return hashed;
+  }
+  return stored;
+}
 
 export function isAdminLoggedIn(): boolean {
   if (typeof window === "undefined") return false;
-  return localStorage.getItem(ADMIN_KEY) === "true";
+  return sessionStorage.getItem(ADMIN_KEY) === "true";
 }
 
 export function adminLogin(password: string): boolean {
-  if (password === ADMIN_PASSWORD) {
-    localStorage.setItem(ADMIN_KEY, "true");
+  const hashed = hashPassword(password);
+  if (hashed === getStoredPassword()) {
+    sessionStorage.setItem(ADMIN_KEY, "true");
     return true;
   }
   return false;
@@ -130,7 +150,7 @@ export function adminLogin(password: string): boolean {
 
 export function adminLogout(): void {
   if (typeof window === "undefined") return;
-  localStorage.removeItem(ADMIN_KEY);
+  sessionStorage.removeItem(ADMIN_KEY);
 }
 
 // ==================== WHATSAPP HELPERS ====================
@@ -172,10 +192,11 @@ export const loginAdmin = adminLogin;
 export const logoutAdmin = adminLogout;
 export const updatePriceSettings = savePriceSettings;
 
-export function updateAdminPassword(newPassword: string): void {
-  if (typeof window === "undefined") return;
-  // For MVP, just simulate success since we use a hardcoded password.
-  // In a real app, this would update the DB.
-  console.log("Password update requested for:", newPassword);
+export function updateAdminPassword(newPassword: string): boolean {
+  if (typeof window === "undefined") return false;
+  if (!newPassword || newPassword.length < 6) return false;
+  const hashed = hashPassword(newPassword);
+  localStorage.setItem(ADMIN_PASS_KEY, hashed);
+  return true;
 }
 
