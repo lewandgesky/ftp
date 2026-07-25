@@ -68,9 +68,9 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="#" className="text-sm text-[#8888a0] hover:text-[#06b6d4] transition-colors">
+                <Link href="/contact" className="text-sm text-[#8888a0] hover:text-[#06b6d4] transition-colors">
                   {t("footer.contact")}
-                </a>
+                </Link>
               </li>
 
             </ul>
@@ -81,19 +81,19 @@ export function Footer() {
             <h4 className="font-semibold text-[#f0f0f5] mb-4">Légal</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-sm text-[#8888a0] hover:text-[#06b6d4] transition-colors">
+                <Link href="/cgv" className="text-sm text-[#8888a0] hover:text-[#06b6d4] transition-colors">
                   {t("footer.terms")}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-sm text-[#8888a0] hover:text-[#06b6d4] transition-colors">
+                <Link href="/confidentialite" className="text-sm text-[#8888a0] hover:text-[#06b6d4] transition-colors">
                   {t("footer.privacy")}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-sm text-[#8888a0] hover:text-[#06b6d4] transition-colors">
+                <Link href="/mentions-legales" className="text-sm text-[#8888a0] hover:text-[#06b6d4] transition-colors">
                   {t("footer.legal")}
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
