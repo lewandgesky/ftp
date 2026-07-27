@@ -53,12 +53,12 @@ function TrackingContent() {
     <div className="container mx-auto px-4 md:px-6 py-24 md:py-32">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-3xl font-bold mb-4">{t("tracking.title")}</h1>
-          <p className="text-[#8888a0]">{t("tracking.subtitle")}</p>
+          <h1 className="text-3xl font-bold mb-4 text-[#1e2d3d]">{t("tracking.title")}</h1>
+          <p className="text-[#6b7b8d]">{t("tracking.subtitle")}</p>
         </div>
 
         {!order ? (
-          <Card className="bg-[#0a0a0f] border-[#22223a] max-w-md mx-auto">
+          <Card className="bg-white/80 backdrop-blur-md border-[#d4cdc5] max-w-md mx-auto">
             <CardContent className="p-6 md:p-8">
               <form onSubmit={handleSearch} className="space-y-6">
                 <div className="space-y-2">
@@ -98,19 +98,19 @@ function TrackingContent() {
           <div className="space-y-8 animate-fade-in-up">
             <button 
               onClick={() => {setOrder(null); router.replace("/suivi");}}
-              className="text-sm text-[#8888a0] hover:text-[#f0f0f5] flex items-center gap-2 transition-colors"
+              className="text-sm text-[#6b7b8d] hover:text-[#1e2d3d] flex items-center gap-2 transition-colors"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
               Nouvelle recherche
             </button>
 
-            <Card className="bg-[#0a0a0f] border-[#22223a] overflow-hidden">
+            <Card className="bg-white/80 backdrop-blur-md border-[#d4cdc5] overflow-hidden">
               {/* Timeline Header */}
-              <div className="bg-[#12121a] border-b border-[#22223a] p-6 md:p-8">
+              <div className="bg-white border-b border-[#d4cdc5] p-6 md:p-8">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
                   <div>
-                    <h2 className="text-xl font-bold">{order.orderRef}</h2>
-                    <p className="text-[#8888a0] text-sm mt-1">{order.reportTheme}</p>
+                    <h2 className="text-xl font-bold text-[#1e2d3d]">{order.orderRef}</h2>
+                    <p className="text-[#6b7b8d] text-sm mt-1">{order.reportTheme}</p>
                   </div>
                   <div className="bg-[#7c3aed]/10 border border-[#7c3aed]/30 text-[#7c3aed] px-4 py-2 rounded-full text-sm font-medium">
                     {t(`tracking.statuses.${order.status}`)}
@@ -119,7 +119,7 @@ function TrackingContent() {
 
                 {/* Visual Timeline */}
                 <div className="relative pt-8 pb-4">
-                  <div className="absolute top-10 left-0 w-full h-[2px] bg-[#22223a] z-0"></div>
+                  <div className="absolute top-10 left-0 w-full h-[2px] bg-[#d4cdc5] z-0"></div>
                   
                   {/* Progress Line */}
                   <div 
@@ -136,15 +136,15 @@ function TrackingContent() {
                         <div key={s} className="flex flex-col items-center group relative">
                           <div 
                             className={`w-5 h-5 rounded-full mb-3 flex items-center justify-center border-2 transition-colors duration-500 ${
-                              isCurrent ? "bg-[#0a0a0f] border-[#06b6d4] shadow-glow" :
-                              isActive ? "bg-[#06b6d4] border-[#06b6d4]" : "bg-[#0a0a0f] border-[#22223a]"
+                              isCurrent ? "bg-white border-[#c2a275] shadow-glow" :
+                              isActive ? "bg-[#c2a275] border-[#c2a275]" : "bg-white border-[#d4cdc5]"
                             }`}
                           >
                             {isActive && !isCurrent && (
-                              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#0a0a0f" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                             )}
                           </div>
-                          <span className={`text-[10px] md:text-xs text-center absolute top-8 whitespace-nowrap transition-colors ${isActive ? "text-[#f0f0f5]" : "text-[#5a5a72]"}`}>
+                          <span className={`text-[10px] md:text-xs text-center absolute top-8 whitespace-nowrap transition-colors ${isActive ? "text-[#1e2d3d]" : "text-[#8c9bab]"}`}>
                             <span className="hidden md:inline">{t(`tracking.statuses.${s}`)}</span>
                             {/* Short text for mobile could be added here */}
                           </span>
@@ -158,14 +158,14 @@ function TrackingContent() {
               {/* Order Details */}
               <div className="p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="font-semibold text-[#8888a0] mb-4 text-sm uppercase tracking-wider">{t("order.summary")}</h3>
+                  <h3 className="font-semibold text-[#6b7b8d] mb-4 text-sm uppercase tracking-wider">{t("order.summary")}</h3>
                   <div className="space-y-4">
                     <div>
-                      <div className="text-xs text-[#5a5a72] mb-1">{t("tracking.orderDate")}</div>
-                      <div className="font-medium">{new Date(order.createdAt).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}</div>
+                      <div className="text-xs text-[#8c9bab] mb-1">{t("tracking.orderDate")}</div>
+                      <div className="font-medium text-[#1e2d3d]">{new Date(order.createdAt).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}</div>
                     </div>
                     <div>
-                      <div className="text-xs text-[#5a5a72] mb-1">{t("tracking.services")}</div>
+                      <div className="text-xs text-[#8c9bab] mb-1">{t("tracking.services")}</div>
                       <div className="font-medium">
                         {order.serviceType === "report" ? t("services.report.name") : 
                          order.serviceType === "powerpoint" ? t("services.powerpoint.name") : 
@@ -173,8 +173,8 @@ function TrackingContent() {
                       </div>
                     </div>
                     <div>
-                      <div className="text-xs text-[#5a5a72] mb-1">{t("tracking.estimatedDelivery")}</div>
-                      <div className="font-medium text-[#f59e0b]">
+                      <div className="text-xs text-[#8c9bab] mb-1">{t("tracking.estimatedDelivery")}</div>
+                      <div className="font-medium text-[#b59567]">
                         {order.estimatedDelivery ? new Date(order.estimatedDelivery).toLocaleDateString('fr-FR') : "À confirmer"}
                       </div>
                     </div>
@@ -182,8 +182,8 @@ function TrackingContent() {
                 </div>
                 
                 <div>
-                  <h3 className="font-semibold text-[#8888a0] mb-4 text-sm uppercase tracking-wider">Contact & Support</h3>
-                  <p className="text-sm text-[#d0d0d5] mb-6 leading-relaxed">
+                  <h3 className="font-semibold text-[#6b7b8d] mb-4 text-sm uppercase tracking-wider">Contact & Support</h3>
+                  <p className="text-sm text-[#3a4d60] mb-6 leading-relaxed">
                     Vous avez une question sur l'avancement ou souhaitez envoyer de nouveaux documents ?
                   </p>
                   <a href={getWhatsAppOrderLink(order.orderRef)} target="_blank" rel="noopener noreferrer">
@@ -206,7 +206,7 @@ export default function TrackingPage() {
   return (
     <main className="flex min-h-screen flex-col">
       <Navbar />
-      <div className="flex-1 bg-[#050508] bg-[url('/grid-pattern.svg')] bg-repeat">
+      <div className="flex-1 bg-[#f5f0eb]">
         <Suspense fallback={<div className="flex justify-center items-center h-64">{/* Loading */}</div>}>
           <TrackingContent />
         </Suspense>

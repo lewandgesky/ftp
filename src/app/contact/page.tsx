@@ -37,22 +37,22 @@ export default function ContactPage() {
   return (
     <main className="flex min-h-screen flex-col">
       <Navbar />
-      <div className="flex-1 bg-[#0f172a] pt-24 pb-20">
+      <div className="flex-1 bg-[#ebe5de] pt-24 pb-20">
         <div className="container mx-auto px-4 md:px-6 max-w-2xl">
-          <h1 className="text-3xl md:text-5xl font-bold mb-4 text-[#f1f5f9] text-center">Contactez-nous</h1>
-          <p className="text-[#94a3b8] text-center mb-10">
+          <h1 className="text-3xl md:text-5xl font-bold mb-4 text-[#1e2d3d] text-center">Contactez-nous</h1>
+          <p className="text-[#6b7b8d] text-center mb-10">
             Une question ? Un besoin spécifique ? Remplissez ce formulaire ou contactez-nous directement sur WhatsApp.
           </p>
           
-          <div className="bg-[#1e293b] border border-[#334155] rounded-xl p-6 md:p-10">
+          <div className="bg-white/80 backdrop-blur-md border border-[#d4cdc5] rounded-xl p-6 md:p-10">
             {submitted ? (
               <div className="text-center py-10">
                 <div className="w-16 h-16 bg-[#10b981]/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                 </div>
-                <h2 className="text-2xl font-bold text-[#f1f5f9] mb-2">Message envoyé !</h2>
-                <p className="text-[#94a3b8] mb-6">Nous vous répondrons dans les plus brefs délais.</p>
-                <Button onClick={() => setSubmitted(false)} variant="outline" className="border-[#475569]">
+                <h2 className="text-2xl font-bold text-[#1e2d3d] mb-2">Message envoyé !</h2>
+                <p className="text-[#6b7b8d] mb-6">Nous vous répondrons dans les plus brefs délais.</p>
+                <Button onClick={() => setSubmitted(false)} variant="outline" className="border-[#d4cdc5] text-[#1e2d3d] hover:bg-[#f5f0eb]">
                   Envoyer un autre message
                 </Button>
               </div>
@@ -60,18 +60,18 @@ export default function ContactPage() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="name">Nom complet</Label>
+                    <Label htmlFor="name" className="text-[#1e2d3d]">Nom complet</Label>
                     <Input 
                       id="name" 
                       name="name" 
                       value={formData.name}
                       onChange={handleChange}
                       required 
-                      className="bg-[#0f172a] border-[#334155]"
+                      className="bg-white border-[#d4cdc5] text-[#1e2d3d] focus:ring-[#c2a275]"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email">Adresse e-mail</Label>
+                    <Label htmlFor="email" className="text-[#1e2d3d]">Adresse e-mail</Label>
                     <Input 
                       id="email" 
                       name="email" 
@@ -79,25 +79,25 @@ export default function ContactPage() {
                       value={formData.email}
                       onChange={handleChange}
                       required 
-                      className="bg-[#0f172a] border-[#334155]"
+                      className="bg-white border-[#d4cdc5] text-[#1e2d3d] focus:ring-[#c2a275]"
                     />
                   </div>
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="subject">Sujet</Label>
+                  <Label htmlFor="subject" className="text-[#1e2d3d]">Sujet</Label>
                   <Input 
                     id="subject" 
                     name="subject" 
                     value={formData.subject}
                     onChange={handleChange}
                     required 
-                    className="bg-[#0f172a] border-[#334155]"
+                    className="bg-white border-[#d4cdc5] text-[#1e2d3d] focus:ring-[#c2a275]"
                   />
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="message">Votre message</Label>
+                  <Label htmlFor="message" className="text-[#1e2d3d]">Votre message</Label>
                   <textarea 
                     id="message" 
                     name="message" 
@@ -105,20 +105,20 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    className="w-full bg-[#0f172a] border border-[#334155] rounded-md p-3 text-sm text-[#f1f5f9] focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]"
+                    className="w-full bg-white border border-[#d4cdc5] rounded-md p-3 text-sm text-[#1e2d3d] focus:outline-none focus:ring-2 focus:ring-[#c2a275]"
                   ></textarea>
                 </div>
                 
                 <Button 
                   type="submit" 
-                  className="w-full bg-[#8b5cf6] hover:bg-[#7c3aed] text-white" 
+                  className="w-full bg-[#c2a275] hover:bg-[#b59567] text-white" 
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Envoi en cours..." : "Envoyer le message"}
                 </Button>
                 
-                <div className="pt-6 border-t border-[#334155] text-center">
-                  <p className="text-sm text-[#94a3b8] mb-4">Ou plus rapide :</p>
+                <div className="pt-6 border-t border-[#d4cdc5] text-center">
+                  <p className="text-sm text-[#6b7b8d] mb-4">Ou plus rapide :</p>
                   <a 
                     href="https://wa.me/237659605092" 
                     target="_blank" 
