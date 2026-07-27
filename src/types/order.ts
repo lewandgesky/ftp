@@ -79,16 +79,22 @@ export interface Template {
   displayOrder: number;
 }
 
-export interface Testimonial {
+export type ReviewStatus = "pending" | "approved" | "rejected";
+
+export interface Review {
   id: string;
   studentName: string;
   school: string;
   field: string;
   content: string;
   rating: number;
-  avatarUrl?: string;
-  isVisible: boolean;
+  isAnonymous: boolean;
+  status: ReviewStatus;
+  createdAt: string;
 }
+
+// Keep old name as alias for backwards compat
+export type Testimonial = Review;
 
 export interface PriceSettings {
   reportPrice: number;

@@ -1,39 +1,74 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "@/lib/i18n/context";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
+import { getApprovedReviews } from "@/lib/store";
+import { Review } from "@/types/order";
+
+interface DisplayTestimonial {
+  id: string | number;
+  name: string;
+  school: string;
+  field: string;
+  content: string;
+  rating: number;
+}
+
+const FALLBACK_TESTIMONIALS: DisplayTestimonial[] = [
+  {
+    id: 1,
+    name: "Marc E.",
+    school: "Université de Yaoundé II",
+    field: "Économie",
+    content: "Un service incroyable ! J'étais submergé par mon stage et je n'avais pas le temps de rédiger mon rapport. L'équipe a produit un document parfait, sans faute, et le PowerPoint était juste magnifique.",
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: "Sophie T.",
+    school: "ESSEC Douala",
+    field: "Ressources Humaines",
+    content: "La communication sur WhatsApp est super pratique. J'ai pu demander quelques ajustements après la première version et ils ont été faits le jour même. Mon encadreur académique a adoré.",
+    rating: 5,
+  },
+  {
+    id: 3,
+    name: "Christian N.",
+    school: "Institut Supérieur",
+    field: "Génie Logiciel",
+    content: "J'avais beaucoup de mal avec la mise en page et la structure. Ils ont pris mes notes et mon code source pour en faire un rapport technique de 50 pages très professionnel. Je recommande le pack complet !",
+    rating: 5,
+  },
+];
+
+function reviewToDisplay(review: Review): DisplayTestimonial {
+  return {
+    id: review.id,
+    name: review.isAnonymous ? "Étudiant anonyme" : review.studentName,
+    school: review.school || "",
+    field: review.field || "",
+    content: review.content,
+    rating: review.rating,
+  };
+}
 
 export function Testimonials() {
   const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState(0);
+  const [testimonials, setTestimonials] = useState<DisplayTestimonial[]>(FALLBACK_TESTIMONIALS);
 
-  const testimonials = [
-    {
-      id: 1,
-      name: "Marc E.",
-      school: "Université de Yaoundé II",
-      field: "Économie",
-      content: "Un service incroyable ! J'étais submergé par mon stage et je n'avais pas le temps de rédiger mon rapport. L'équipe a produit un document parfait, sans faute, et le PowerPoint était juste magnifique.",
-      rating: 5,
-    },
-    {
-      id: 2,
-      name: "Sophie T.",
-      school: "ESSEC Douala",
-      field: "Ressources Humaines",
-      content: "La communication sur WhatsApp est super pratique. J'ai pu demander quelques ajustements après la première version et ils ont été faits le jour même. Mon encadreur académique a adoré.",
-      rating: 5,
-    },
-    {
-      id: 3,
-      name: "Christian N.",
-      school: "Institut Supérieur",
-      field: "Génie Logiciel",
-      content: "J'avais beaucoup de mal avec la mise en page et la structure. Ils ont pris mes notes et mon code source pour en faire un rapport technique de 50 pages très professionnel. Je recommande le pack complet !",
-      rating: 5,
-    },
-  ];
+  useEffect(() => {
+    const loadReviews = async () => {
+      const approved = await getApprovedReviews();
+      if (approved.length > 0) {
+        setTestimonials(approved.map(reviewToDisplay));
+        setActiveIndex(0);
+      }
+      // If no approved reviews, keep fallback data
+    };
+    loadReviews();
+  }, []);
 
   return (
     <section className="py-20 bg-[#f5f0eb]/80 backdrop-blur-md relative border-y border-white/20">
@@ -70,13 +105,13 @@ export function Testimonials() {
                       </div>
                       
                       <p className="text-lg md:text-xl text-[#4a5568] leading-relaxed mb-8 italic">
-                        "{item.content}"
+                        &quot;{item.content}&quot;
                       </p>
                       
                       <div>
                         <div className="font-bold text-lg text-[#1e2d3d]">{item.name}</div>
-                        <div className="text-sm text-[#c8944e]">{item.field}</div>
-                        <div className="text-sm text-[#6b7b8d]">{item.school}</div>
+                        {item.field && <div className="text-sm text-[#c8944e]">{item.field}</div>}
+                        {item.school && <div className="text-sm text-[#6b7b8d]">{item.school}</div>}
                       </div>
                     </Card>
                   </div>
@@ -84,7 +119,7 @@ export function Testimonials() {
               </div>
             </div>
 
-            {/* Navigation buttons */}
+            {/* Navigation dots */}
             <div className="flex justify-center mt-8 gap-2">
               {testimonials.map((_, index) => (
                 <button

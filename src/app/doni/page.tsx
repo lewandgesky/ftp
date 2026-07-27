@@ -15,9 +15,12 @@ import {
   updateOrderStatus, 
   getPriceSettings, 
   updatePriceSettings,
-  updateAdminPassword
+  updateAdminPassword,
+  getAllReviews,
+  updateReviewStatus,
+  deleteReview
 } from "@/lib/store";
-import { Order, ORDER_STATUS_LIST, PriceSettings, ServiceType, OrderStatus } from "@/types/order";
+import { Order, ORDER_STATUS_LIST, PriceSettings, ServiceType, OrderStatus, Review, ReviewStatus } from "@/types/order";
 import { supabase } from "@/lib/supabase";
 
 export default function AdminPage() {
@@ -26,8 +29,9 @@ export default function AdminPage() {
   const [loginError, setLoginError] = useState(false);
   
   const [orders, setOrders] = useState<Order[]>([]);
+  const [reviews, setReviews] = useState<Review[]>([]);
   const [prices, setPrices] = useState<PriceSettings>({ reportPrice: 0, powerpointPrice: 0, packPrice: 0 });
-  const [activeTab, setActiveTab] = useState<"orders" | "settings">("orders");
+  const [activeTab, setActiveTab] = useState<"orders" | "reviews" | "settings">("orders");
   
   const [newPassword, setNewPassword] = useState("");
   const [settingsSaved, setSettingsSaved] = useState(false);
@@ -42,6 +46,8 @@ export default function AdminPage() {
   const loadData = async () => {
     const fetchedOrders = await getAllOrders();
     setOrders(fetchedOrders);
+    const fetchedReviews = await getAllReviews();
+    setReviews(fetchedReviews);
     const fetchedPrices = await getPriceSettings();
     setPrices(fetchedPrices);
   };
@@ -66,6 +72,18 @@ export default function AdminPage() {
   const handleStatusChange = async (orderId: string, newStatus: OrderStatus) => {
     await updateOrderStatus(orderId, newStatus);
     loadData();
+  };
+
+  const handleReviewAction = async (reviewId: string, action: "approve" | "reject" | "delete") => {
+    if (action === "delete") {
+      if (confirm("Voulez-vous vraiment supprimer cet avis définitivement ?")) {
+        await deleteReview(reviewId);
+        loadData();
+      }
+    } else {
+      await updateReviewStatus(reviewId, action === "approve" ? "approved" : "rejected");
+      loadData();
+    }
   };
 
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -150,15 +168,21 @@ export default function AdminPage() {
             </Button>
           </div>
 
-          <div className="flex gap-4 mb-8 border-b border-[#d4cdc5]">
+          <div className="flex gap-4 mb-8 border-b border-[#d4cdc5] overflow-x-auto pb-1">
             <button 
-              className={`pb-3 px-2 font-medium border-b-2 transition-colors ${activeTab === "orders" ? "border-[#c2a275] text-[#c2a275]" : "border-transparent text-[#6b7b8d] hover:text-[#1e2d3d]"}`}
+              className={`pb-3 px-2 font-medium border-b-2 transition-colors whitespace-nowrap ${activeTab === "orders" ? "border-[#c2a275] text-[#c2a275]" : "border-transparent text-[#6b7b8d] hover:text-[#1e2d3d]"}`}
               onClick={() => setActiveTab("orders")}
             >
               Commandes ({orders.length})
             </button>
             <button 
-              className={`pb-3 px-2 font-medium border-b-2 transition-colors ${activeTab === "settings" ? "border-[#c2a275] text-[#c2a275]" : "border-transparent text-[#6b7b8d] hover:text-[#1e2d3d]"}`}
+              className={`pb-3 px-2 font-medium border-b-2 transition-colors whitespace-nowrap ${activeTab === "reviews" ? "border-[#c2a275] text-[#c2a275]" : "border-transparent text-[#6b7b8d] hover:text-[#1e2d3d]"}`}
+              onClick={() => setActiveTab("reviews")}
+            >
+              Avis ({reviews.filter(r => r.status === 'pending').length} en attente)
+            </button>
+            <button 
+              className={`pb-3 px-2 font-medium border-b-2 transition-colors whitespace-nowrap ${activeTab === "settings" ? "border-[#c2a275] text-[#c2a275]" : "border-transparent text-[#6b7b8d] hover:text-[#1e2d3d]"}`}
               onClick={() => setActiveTab("settings")}
             >
               Paramètres & Tarifs
@@ -297,6 +321,91 @@ export default function AdminPage() {
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.94a3b8-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
                             Contacter
                           </a>
+                        </div>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {activeTab === "reviews" && (
+            <div className="space-y-4">
+              {reviews.length === 0 ? (
+                <Card className="bg-white border-[#d4cdc5] p-12 text-center text-[#6b7b8d]">
+                  Aucun avis pour le moment. Partagez le lien /avis/nouveau à vos clients.
+                </Card>
+              ) : (
+                <div className="grid grid-cols-1 gap-4">
+                  {reviews.map(review => (
+                    <Card key={review.id} className={`bg-white border ${review.status === 'pending' ? 'border-[#f59e0b]' : review.status === 'approved' ? 'border-[#10b981]' : 'border-[#ef4444]'} overflow-hidden`}>
+                      <div className="p-4 md:p-6">
+                        <div className="flex justify-between items-start mb-4">
+                          <div>
+                            <div className="flex items-center gap-2 mb-1">
+                              <span className="font-bold text-lg text-[#1e2d3d]">{review.studentName}</span>
+                              {review.isAnonymous && <span className="text-xs bg-[#f5f0eb] text-[#6b7b8d] px-2 py-0.5 rounded-full border border-[#d4cdc5]">Anonyme sur le site</span>}
+                            </div>
+                            <div className="text-sm text-[#6b7b8d]">
+                              {[review.field, review.school].filter(Boolean).join(" · ")}
+                            </div>
+                            <div className="text-xs text-[#8c9bab] mt-1">
+                              {new Date(review.createdAt).toLocaleDateString("fr-FR", { hour: "2-digit", minute: "2-digit" })}
+                            </div>
+                          </div>
+                          
+                          <div className="flex flex-col items-end gap-2">
+                            <div className="flex">
+                              {[...Array(5)].map((_, i) => (
+                                <svg key={i} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill={i < review.rating ? "#c8944e" : "none"} stroke={i < review.rating ? "#c8944e" : "#d4cdc5"} strokeWidth="2">
+                                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                                </svg>
+                              ))}
+                            </div>
+                            <span className={`text-xs font-medium px-2 py-1 rounded-full ${
+                              review.status === 'pending' ? 'bg-[#f59e0b]/10 text-[#f59e0b]' :
+                              review.status === 'approved' ? 'bg-[#10b981]/10 text-[#10b981]' :
+                              'bg-[#ef4444]/10 text-[#ef4444]'
+                            }`}>
+                              {review.status === 'pending' ? 'En attente' : review.status === 'approved' ? 'Approuvé' : 'Rejeté'}
+                            </span>
+                          </div>
+                        </div>
+                        
+                        <div className="bg-[#f5f0eb] p-4 rounded-lg text-[#4a5568] italic mb-4">
+                          "{review.content}"
+                        </div>
+                        
+                        <div className="flex gap-2 justify-end border-t border-[#d4cdc5] pt-4">
+                          {review.status !== 'approved' && (
+                            <Button 
+                              size="sm" 
+                              onClick={() => handleReviewAction(review.id, 'approve')}
+                              className="bg-[#10b981] hover:bg-[#059669] text-white"
+                            >
+                              Approuver
+                            </Button>
+                          )}
+                          {review.status !== 'rejected' && (
+                            <Button 
+                              size="sm" 
+                              variant="outline"
+                              onClick={() => handleReviewAction(review.id, 'reject')}
+                              className="border-[#ef4444] text-[#ef4444] hover:bg-[#ef4444]/10"
+                            >
+                              Rejeter
+                            </Button>
+                          )}
+                          <Button 
+                            size="sm" 
+                            variant="ghost"
+                            onClick={() => handleReviewAction(review.id, 'delete')}
+                            className="text-[#6b7b8d] hover:text-[#ef4444] hover:bg-[#ef4444]/10"
+                            title="Supprimer définitivement"
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+                          </Button>
                         </div>
                       </div>
                     </Card>

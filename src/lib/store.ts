@@ -1,4 +1,4 @@
-import { Order, OrderFile, PriceSettings, OrderStatus } from "@/types/order";
+import { Order, OrderFile, PriceSettings, OrderStatus, Review, ReviewStatus } from "@/types/order";
 import { supabase } from "./supabase";
 
 const SETTINGS_KEY = "ftp-settings";
@@ -242,6 +242,79 @@ export async function getOrderStats() {
       .filter((o) => o.status !== "brouillon")
       .reduce((sum, o) => sum + (o.totalPrice || 0), 0),
   };
+}
+
+// ==================== REVIEW MANAGEMENT (SUPABASE) ====================
+
+
+export async function submitReview(review: {
+  studentName: string;
+  school: string;
+  field: string;
+  content: string;
+  rating: number;
+  isAnonymous: boolean;
+}): Promise<Review | null> {
+  const { data, error } = await supabase
+    .from('reviews')
+    .insert([{
+      ...review,
+      status: 'pending',
+      createdAt: new Date().toISOString(),
+    }])
+    .select()
+    .single();
+    
+  if (error) {
+    console.error('Error submitting review:', error);
+    return null;
+  }
+  return data as Review;
+}
+
+export async function getApprovedReviews(): Promise<Review[]> {
+  const { data, error } = await supabase
+    .from('reviews')
+    .select('*')
+    .eq('status', 'approved')
+    .order('createdAt', { ascending: false });
+    
+  if (error) {
+    console.error('Error fetching approved reviews:', error);
+    return [];
+  }
+  return data as Review[];
+}
+
+export async function getAllReviews(): Promise<Review[]> {
+  const { data, error } = await supabase
+    .from('reviews')
+    .select('*')
+    .order('createdAt', { ascending: false });
+    
+  if (error) {
+    console.error('Error fetching all reviews:', error);
+    return [];
+  }
+  return data as Review[];
+}
+
+export async function updateReviewStatus(reviewId: string, status: ReviewStatus): Promise<void> {
+  const { error } = await supabase
+    .from('reviews')
+    .update({ status })
+    .eq('id', reviewId);
+    
+  if (error) console.error('Error updating review status:', error);
+}
+
+export async function deleteReview(reviewId: string): Promise<void> {
+  const { error } = await supabase
+    .from('reviews')
+    .delete()
+    .eq('id', reviewId);
+    
+  if (error) console.error('Error deleting review:', error);
 }
 
 // Aliases for admin page compatibility
