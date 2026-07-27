@@ -37,7 +37,11 @@
     "subtitle": "Focus on your defense. We'll handle the rest. Receive a professional, complete report ready to print.",
     "cta": "Order my report",
     "ctaSecondary": "See our work",
-    "badge": "🎓 200+ reports successfully delivered"
+    "badge": "🎓 200+ reports successfully delivered",
+    "statsReports": "Reports delivered",
+    "statsSatisfaction": "Satisfaction",
+    "statsDelivery": "Average delivery",
+    "scrollHint": "Scroll to discover"
   },
   "howItWorks": {
     "title": "How does it work?",

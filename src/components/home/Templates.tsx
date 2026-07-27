@@ -66,12 +66,12 @@ export function Templates() {
 
   return (
     <>
-      <section id="templates" className="py-20 bg-[#12121a]">
+      <section id="templates" className="py-20 bg-[#ebe5de]/80 backdrop-blur-md border-y border-white/20">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
             <div className="max-w-2xl">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("templates.title")}</h2>
-              <p className="text-[#8888a0]">{t("templates.subtitle")}</p>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#1e2d3d]">{t("templates.title")}</h2>
+              <p className="text-[#6b7b8d]">{t("templates.subtitle")}</p>
             </div>
           </div>
 
@@ -79,11 +79,11 @@ export function Templates() {
             {templates.map((template) => (
               <Card 
                 key={template.id} 
-                className="overflow-hidden group card-hover bg-[#0a0a0f] border-[#22223a] cursor-pointer"
+                className="overflow-hidden group card-hover bg-white border-[#d4cdc5] cursor-pointer"
                 onClick={() => setSelectedTemplate(template)}
               >
                 <div className={`h-44 bg-gradient-to-br ${template.color} border-b ${template.border} relative flex items-center justify-center p-4`}>
-                  <div className="absolute inset-0 bg-[#0a0a0f]/30 backdrop-blur-[1px]"></div>
+                  <div className="absolute inset-0 bg-white/20 backdrop-blur-[1px]"></div>
                   {/* Realistic document preview */}
                   <div className="relative z-10 w-full h-full bg-white rounded shadow-lg flex flex-col p-3 overflow-hidden">
                     <div className="w-8 h-1 bg-gray-300 rounded-full mb-2 mx-auto"></div>
@@ -98,8 +98,8 @@ export function Templates() {
                     </div>
                   </div>
                   {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-[#7c3aed]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2 text-[#7c3aed] font-medium text-sm shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                  <div className="absolute inset-0 bg-[#c8944e]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2 text-[#c8944e] font-medium text-sm shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
                         <circle cx="12" cy="12" r="3"/>
@@ -110,10 +110,10 @@ export function Templates() {
                 </div>
                 <CardContent className="p-5">
                   <div className="flex justify-between items-start mb-3">
-                    <span className="text-xs font-medium text-[#06b6d4] bg-[#06b6d4]/10 px-2 py-1 rounded">
+                    <span className="text-xs font-medium text-[#c8944e] bg-[#c8944e]/10 px-2 py-1 rounded">
                       {template.field}
                     </span>
-                    <span className="text-xs text-[#8888a0] flex items-center gap-1">
+                    <span className="text-xs text-[#6b7b8d] flex items-center gap-1">
                       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                         <polyline points="14 2 14 8 20 8"/>
@@ -124,11 +124,11 @@ export function Templates() {
                       {template.pages} {t("templates.pages")}
                     </span>
                   </div>
-                  <h3 className="font-semibold text-sm leading-snug line-clamp-2 mb-4 group-hover:text-[#7c3aed] transition-colors">
+                  <h3 className="font-semibold text-sm leading-snug line-clamp-2 mb-4 text-[#1e2d3d] group-hover:text-[#c8944e] transition-colors">
                     {template.title}
                   </h3>
                   
-                  <div className="flex items-center text-sm text-[#8888a0] group-hover:text-[#f0f0f5] transition-colors gap-2">
+                  <div className="flex items-center text-sm text-[#6b7b8d] group-hover:text-[#1e2d3d] transition-colors gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
                       <circle cx="12" cy="12" r="3"/>
@@ -149,21 +149,21 @@ export function Templates() {
           onClick={() => setSelectedTemplate(null)}
         >
           <div 
-            className="bg-[#12121a] border border-[#22223a] rounded-2xl w-full max-w-3xl max-h-[85vh] overflow-auto shadow-2xl animate-fade-in-up"
+            className="bg-white border border-[#d4cdc5] rounded-2xl w-full max-w-3xl max-h-[85vh] overflow-auto shadow-2xl animate-fade-in-up"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal header */}
-            <div className="flex items-center justify-between p-6 border-b border-[#22223a]">
+            <div className="flex items-center justify-between p-6 border-b border-[#d4cdc5]">
               <div>
-                <span className="text-xs font-medium text-[#06b6d4] bg-[#06b6d4]/10 px-2 py-1 rounded">
+                <span className="text-xs font-medium text-[#c8944e] bg-[#c8944e]/10 px-2 py-1 rounded">
                   {selectedTemplate.field}
                 </span>
-                <h3 className="text-xl font-bold mt-3">{selectedTemplate.title}</h3>
-                <p className="text-sm text-[#5a5a72] mt-1">{selectedTemplate.pages} pages</p>
+                <h3 className="text-xl font-bold mt-3 text-[#1e2d3d]">{selectedTemplate.title}</h3>
+                <p className="text-sm text-[#6b7b8d] mt-1">{selectedTemplate.pages} pages</p>
               </div>
               <button 
                 onClick={() => setSelectedTemplate(null)}
-                className="w-10 h-10 rounded-full bg-[#22223a] hover:bg-[#3a3a52] transition-colors flex items-center justify-center text-[#8888a0] hover:text-white shrink-0"
+                className="w-10 h-10 rounded-full bg-[#ebe5de] hover:bg-[#d4cdc5] transition-colors flex items-center justify-center text-[#6b7b8d] hover:text-[#1e2d3d] shrink-0"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="18" y1="6" x2="6" y2="18"/>
@@ -179,7 +179,7 @@ export function Templates() {
                 {/* Title page simulation */}
                 <div className="text-center mb-8 pb-8 border-b-2 border-gray-200">
                   <div className="text-xs uppercase tracking-widest text-gray-400 mb-4">République du Cameroun — Paix - Travail - Patrie</div>
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#7c3aed] to-[#06b6d4] mx-auto mb-4 flex items-center justify-center text-white text-xl font-bold">FTP</div>
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#c8944e] to-[#d4a96a] mx-auto mb-4 flex items-center justify-center text-white text-xl font-bold">FTP</div>
                   <h4 className="text-lg md:text-xl font-bold text-gray-900 mb-2">RAPPORT DE STAGE</h4>
                   <p className="text-sm text-gray-600 font-medium">{selectedTemplate.title}</p>
                   <div className="mt-4 text-xs text-gray-400">Année académique 2025-2026</div>
@@ -210,7 +210,7 @@ export function Templates() {
               
               {/* CTA */}
               <div className="text-center mt-8">
-                <p className="text-[#8888a0] text-sm mb-4">Vous voulez un rapport similaire ?</p>
+                <p className="text-[#6b7b8d] text-sm mb-4">Vous voulez un rapport similaire ?</p>
                 <Link href="/commander">
                   <Button variant="glow" size="lg" className="px-8">
                     Commander mon rapport

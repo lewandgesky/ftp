@@ -37,7 +37,11 @@
     "subtitle": "Concentrez-vous sur votre soutenance. On s'occupe du reste. Recevez un rapport professionnel, complet et prêt à imprimer.",
     "cta": "Commander mon rapport",
     "ctaSecondary": "Voir nos réalisations",
-    "badge": "🎓 +200 rapports livrés avec succès"
+    "badge": "🎓 +200 rapports livrés avec succès",
+    "statsReports": "Rapports livrés",
+    "statsSatisfaction": "Satisfaction",
+    "statsDelivery": "Délai moyen",
+    "scrollHint": "Scrolle pour découvrir"
   },
   "howItWorks": {
     "title": "Comment ça marche ?",
