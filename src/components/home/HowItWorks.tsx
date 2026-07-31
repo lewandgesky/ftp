@@ -1,19 +1,26 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useInView } from "motion/react";
 import { useTranslation } from "@/lib/i18n/context";
+import { Reveal } from "@/components/motion/Reveal";
+import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 
 export function HowItWorks() {
   const { t } = useTranslation();
   const [activeStep, setActiveStep] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(sectionRef, { amount: 0.3 });
 
-  // Auto-advance the demo every 3 seconds
+  // Auto-advance the demo every 3 seconds — uniquement quand la section
+  // est visible à l'écran (évite de tourner dans le vide hors viewport).
   useEffect(() => {
+    if (!inView) return;
     const interval = setInterval(() => {
       setActiveStep((prev) => (prev + 1) % 3);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [inView]);
 
   const steps = [
     {
@@ -129,12 +136,12 @@ export function HowItWorks() {
   ];
 
   return (
-    <section className="py-20 relative bg-[#ebe5de]/80 backdrop-blur-md border-y border-white/20">
+    <section ref={sectionRef} className="py-20 relative bg-[#ebe5de]/80 backdrop-blur-md border-y border-white/20">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-16">
+        <Reveal className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#1e2d3d]">{t("howItWorks.title")}</h2>
           <p className="text-[#6b7b8d] max-w-2xl mx-auto">{t("howItWorks.subtitle")}</p>
-        </div>
+        </Reveal>
 
         {/* Animated Demo + Steps */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto items-center">
@@ -193,16 +200,16 @@ export function HowItWorks() {
           </div>
 
           {/* Steps list */}
-          <div className="order-1 lg:order-2 space-y-6">
+          <Stagger as="div" className="order-1 lg:order-2 space-y-6" stagger={0.15}>
             {steps.map((step, index) => (
-              <div 
-                key={index} 
+              <StaggerItem
+                key={index}
+                onClick={() => setActiveStep(index)}
                 className={`flex items-start gap-4 p-4 rounded-xl cursor-pointer transition-all duration-300 ${
-                  activeStep === index 
-                    ? "bg-white border border-[#d4cdc5] shadow-lg" 
+                  activeStep === index
+                    ? "bg-white border border-[#d4cdc5] shadow-lg"
                     : "hover:bg-white/50"
                 }`}
-                onClick={() => setActiveStep(index)}
               >
                 <div 
                   className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300"
@@ -221,9 +228,9 @@ export function HowItWorks() {
                   </div>
                   <p className="text-[#6b7b8d] text-sm leading-relaxed">{step.desc}</p>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
       </div>
     </section>

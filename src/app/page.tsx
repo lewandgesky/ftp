@@ -8,23 +8,14 @@ import { Services } from "@/components/home/Services";
 import { Templates } from "@/components/home/Templates";
 import { Testimonials } from "@/components/home/Testimonials";
 import { FAQ } from "@/components/home/FAQ";
+import { ParallaxBackground } from "@/components/motion/ParallaxBackground";
+import { ScrollProgress } from "@/components/motion/ScrollProgress";
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col relative">
-      <div className="fixed inset-0 -z-50 pointer-events-none">
-        <video 
-          autoPlay 
-          loop 
-          muted 
-          playsInline 
-          className="w-full h-full object-cover opacity-60"
-        >
-          <source src="/videos/sea-storm.mp4" type="video/mp4" />
-        </video>
-        {/* Subtle overlay to blend the video with the warm palette */}
-        <div className="absolute inset-0 bg-[#ebe5de]/30 mix-blend-overlay"></div>
-      </div>
+      <ParallaxBackground />
+      <ScrollProgress />
 
       <Navbar />
       

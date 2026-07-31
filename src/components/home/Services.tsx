@@ -6,6 +6,8 @@ import { useTranslation } from "@/lib/i18n/context";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { getPriceSettings } from "@/lib/store";
+import { Reveal } from "@/components/motion/Reveal";
+import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 
 export function Services() {
   const { t } = useTranslation();
@@ -69,19 +71,19 @@ export function Services() {
       <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-[#c8944e] blur-[150px] opacity-5 rounded-bl-[100%] pointer-events-none"></div>
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="text-center mb-16">
+        <Reveal className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#1e2d3d]">{t("services.title")}</h2>
           <p className="text-[#6b7b8d] max-w-2xl mx-auto">{t("services.subtitle")}</p>
-        </div>
+        </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {services.map((service) => {
             const isPopular = service.isPopular;
             const features = (t(`services.${service.key}.features`) as unknown) as string[];
 
             return (
-              <Card 
-                key={service.id} 
+              <StaggerItem key={service.id}>
+              <Card
                 className={`relative card-hover flex flex-col h-full ${
                   isPopular ? "border-[#c8944e]/50 shadow-glow md:-translate-y-4" : ""
                 }`}
@@ -127,9 +129,10 @@ export function Services() {
                   </Link>
                 </CardFooter>
               </Card>
+              </StaggerItem>
             );
           })}
-        </div>
+        </Stagger>
       </div>
     </section>
   );
