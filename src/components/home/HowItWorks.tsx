@@ -84,7 +84,7 @@ export function HowItWorks() {
           </div>
           <div className="p-3 rounded-lg bg-[#1a2332] border border-[#2a3f52]">
             <div className="text-[10px] text-[#8899aa] mb-1">Montant</div>
-            <div className="text-lg font-bold text-[#e8e2dc]">25 000 FCFA</div>
+            <div className="text-lg font-bold text-[#e8e2dc]">10 000 FCFA</div>
           </div>
           <div className="flex items-center gap-2 text-xs text-[#10b981]">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg>

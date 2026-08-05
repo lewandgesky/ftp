@@ -62,7 +62,7 @@ function TrackingContent() {
             <CardContent className="p-6 md:p-8">
               <form onSubmit={handleSearch} className="space-y-6">
                 <div className="space-y-2">
-                  <Label htmlFor="orderRef">{t("tracking.orderRef")}</Label>
+                  <Label htmlFor="orderRef" className="text-[#1e2d3d]">{t("tracking.orderRef")}</Label>
                   <Input 
                     id="orderRef" 
                     placeholder={t("tracking.orderRefPlaceholder")} 
@@ -72,7 +72,7 @@ function TrackingContent() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="email">{t("tracking.email")}</Label>
+                  <Label htmlFor="email" className="text-[#1e2d3d]">{t("tracking.email")}</Label>
                   <Input 
                     id="email" 
                     type="email" 
