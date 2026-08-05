@@ -131,7 +131,7 @@ export function Hero() {
             </div>
             <div className="text-center">
               <div className="text-2xl md:text-3xl font-bold text-[#1e2d3d]">
-                <AnimatedCounter value={5} suffix=" jours" />
+                <AnimatedCounter value={5} suffix=" jours max" />
               </div>
               <div className="text-xs md:text-sm text-[#9ca3af]">
                 {t("hero.statsDelivery") || "Délai moyen"}
