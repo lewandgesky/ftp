@@ -137,6 +137,82 @@
       }
     ]
   },
+  "whyChooseUs": {
+    "title": "Pourquoi nous choisir ?",
+    "subtitle": "Un travail 100% humain, sans risque de détection IA. Voici pourquoi nos clients nous font confiance.",
+    "humanLabel": "Expert FTP",
+    "aiLabel": "Intelligence Artificielle",
+    "comparison": [
+      {
+        "criterion": "Suivi personnalisé",
+        "human": "De la commande jusqu'à l'impression, un expert dédié vous accompagne via WhatsApp.",
+        "ai": "Aucun suivi. Vous êtes livré à vous-même avec un texte brut."
+      },
+      {
+        "criterion": "Compréhension du contexte",
+        "human": "Adapté à votre école, votre filière et vos consignes spécifiques.",
+        "ai": "Contenu générique, hors contexte, souvent hors sujet sur 40+ pages."
+      },
+      {
+        "criterion": "Corrections illimitées",
+        "human": "Retours et ajustements en temps réel via WhatsApp, jusqu'à satisfaction.",
+        "ai": "Résultat brut et final. Chaque correction nécessite une nouvelle génération."
+      },
+      {
+        "criterion": "Mise en page professionnelle",
+        "human": "Document Word/PDF complet, prêt à imprimer avec couverture et sommaire.",
+        "ai": "Texte brut sans formatage, sans page de garde, sans sommaire."
+      },
+      {
+        "criterion": "Détectable ?",
+        "human": "100% indétectable — écrit par un humain, aucun watermark.",
+        "ai": "Traçable par les watermarks IA (SynthID, AI Act 2026)."
+      },
+      {
+        "criterion": "Cohérence sur 40+ pages",
+        "human": "Style d'écriture uniforme et cohérent du début à la fin.",
+        "ai": "Incohérences fréquentes, répétitions et changements de ton."
+      }
+    ],
+    "newsTitle": "L'IA laisse des traces",
+    "newsSubtitle": "Des faits récents et vérifiables qui montrent pourquoi confier son rapport à l'IA est risqué.",
+    "news": [
+      {
+        "badge": "Août 2026",
+        "flag": "🇪🇺",
+        "title": "Loi AI Act — Watermarks obligatoires",
+        "desc": "L'Union Européenne impose à tous les modèles IA (ChatGPT, Claude, Gemini) d'intégrer des watermarks invisibles dans leurs textes. Ces empreintes numériques permettent de tracer l'origine de tout document généré.",
+        "source": "https://artificialintelligenceact.eu/article/50/",
+        "sourceLabel": "AI Act — Article 50"
+      },
+      {
+        "badge": "2025",
+        "flag": "🔍",
+        "title": "SynthID de Google — Empreinte invisible",
+        "desc": "Google a déployé SynthID, une technologie qui insère une empreinte statistique imperceptible dans chaque texte généré par ses modèles. Les universités s'équipent de détecteurs compatibles.",
+        "source": "https://deepmind.google/technologies/synthid/",
+        "sourceLabel": "Google DeepMind — SynthID"
+      },
+      {
+        "badge": "2026",
+        "flag": "🎓",
+        "title": "Universités en alerte maximale",
+        "desc": "Harvard, Oxford et de nombreuses universités classent l'utilisation non déclarée de l'IA comme fraude académique, passible d'exclusion définitive ou de mention permanente au dossier.",
+        "source": "https://oai.fas.harvard.edu/ai-guidance/",
+        "sourceLabel": "Harvard — AI Guidance"
+      },
+      {
+        "badge": "2026",
+        "flag": "⚠️",
+        "title": "La paraphrase ne suffit plus",
+        "desc": "Même les outils de réécriture et de paraphrase ne suppriment pas toujours les watermarks statistiques. L'AI Act rend les fournisseurs d'IA responsables de la traçabilité de leurs contenus.",
+        "source": "https://www.forbes.com/sites/lanceeliot/2024/08/26/detecting-whether-generative-ai-watermarking-has-been-used-is-an-ai-ethics-and-ai-law-priority/",
+        "sourceLabel": "Forbes — AI Watermarking"
+      }
+    ],
+    "cta": "Confiez votre rapport à un expert",
+    "ctaSubtext": "Zéro risque. Zéro trace IA. 100% humain."
+  },
   "footer": {
     "rights": "Tous droits réservés.",
     "tagline": "Votre partenaire pour des rapports de stage professionnels.",
