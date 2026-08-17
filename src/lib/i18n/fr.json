@@ -48,8 +48,8 @@
     "subtitle": "Un processus simple en 3 étapes pour obtenir votre rapport de stage professionnel.",
     "step1Title": "Remplissez le formulaire",
     "step1Desc": "Partagez les détails de votre stage : thème, entreprise, tâches réalisées et consignes de votre école.",
-    "step2Title": "Validez et payez",
-    "step2Desc": "Vérifiez votre commande, choisissez vos options (Rapport, PowerPoint ou Pack complet) et effectuez le paiement.",
+    "step2Title": "Validez et payez l'acompte",
+    "step2Desc": "Vérifiez votre commande, choisissez vos options (Rapport, PowerPoint ou Pack complet) et effectuez le paiement de la moitié (50%) pour démarrer le travail. Le reste sera payé à la livraison.",
     "step3Title": "Recevez votre rapport",
     "step3Desc": "Votre rapport professionnel vous est livré dans les délais convenus, prêt à être imprimé et soutenu."
   },
@@ -113,7 +113,7 @@
     "items": [
       {
         "q": "Comment se passe la commande ?",
-        "a": "C'est simple ! Remplissez notre formulaire en ligne avec les détails de votre stage, choisissez le service souhaité, puis effectuez le paiement. Nous prenons en charge la rédaction et vous livrons le rapport finalisé."
+        "a": "C'est simple ! Remplissez notre formulaire en ligne avec les détails de votre stage, choisissez le service souhaité, puis effectuez le paiement de la moitié (50%) pour commencer. Nous prenons en charge la rédaction et vous livrons le rapport finalisé. Le reste est payé après livraison."
       },
       {
         "q": "En combien de temps recevrai-je mon rapport ?",
@@ -129,7 +129,7 @@
       },
       {
         "q": "Comment se fait le paiement ?",
-        "a": "Nous acceptons les paiements par Mobile Money (MTN MoMo, Orange Money). Les détails de paiement vous seront communiqués après la soumission de votre commande."
+        "a": "Nous acceptons les paiements par Mobile Money (MTN MoMo, Orange Money). Le paiement se fait en deux tranches : 50% à la commande pour démarrer le travail, et 50% à la livraison. Les détails vous seront communiqués après la soumission de votre commande."
       },
       {
         "q": "Que contient le Pack PowerPoint ?",
@@ -269,7 +269,7 @@
     "confirmOrder": "Confirmer la commande",
     "orderSuccess": "Commande envoyée avec succès !",
     "orderRef": "Votre numéro de commande :",
-    "orderNextSteps": "Nous vous contacterons sur WhatsApp pour confirmer les détails de paiement et le délai de livraison.",
+    "orderNextSteps": "Nous vous contacterons sur WhatsApp pour confirmer les détails de paiement (50% d'acompte) et le délai de livraison.",
     "goToWhatsApp": "Nous contacter sur WhatsApp",
     "goToTracking": "Suivre ma commande"
   },

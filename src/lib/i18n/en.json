@@ -48,8 +48,8 @@
     "subtitle": "A simple 3-step process to get your professional internship report.",
     "step1Title": "Fill in the form",
     "step1Desc": "Share your internship details: topic, company, tasks completed, and your school's requirements.",
-    "step2Title": "Validate and pay",
-    "step2Desc": "Review your order, choose your options (Report, PowerPoint, or Full Pack) and make the payment.",
+    "step2Title": "Validate and pay deposit",
+    "step2Desc": "Review your order, choose your options (Report, PowerPoint, or Full Pack) and pay half (50%) to start the work. The rest will be paid upon delivery.",
     "step3Title": "Receive your report",
     "step3Desc": "Your professional report is delivered on time, ready to be printed and defended."
   },
@@ -113,7 +113,7 @@
     "items": [
       {
         "q": "How does the ordering process work?",
-        "a": "It's simple! Fill in our online form with your internship details, choose the desired service, then make the payment. We handle the writing and deliver the finalized report."
+        "a": "It's simple! Fill in our online form with your internship details, choose the desired service, then pay half (50%) to start. We handle the writing and deliver the finalized report. The balance is paid upon delivery."
       },
       {
         "q": "How long will it take to receive my report?",
@@ -129,7 +129,7 @@
       },
       {
         "q": "How does payment work?",
-        "a": "We accept payments via Mobile Money (MTN MoMo, Orange Money). Payment details will be communicated after you submit your order."
+        "a": "We accept payments via Mobile Money (MTN MoMo, Orange Money). Payment is made in two installments: 50% upon ordering to start the work, and 50% upon delivery. Details will be communicated after you submit your order."
       },
       {
         "q": "What's included in the PowerPoint Pack?",
@@ -269,7 +269,7 @@
     "confirmOrder": "Confirm order",
     "orderSuccess": "Order sent successfully!",
     "orderRef": "Your order number:",
-    "orderNextSteps": "We will contact you on WhatsApp to confirm payment details and delivery timeline.",
+    "orderNextSteps": "We will contact you on WhatsApp to confirm payment details (50% deposit) and delivery timeline.",
     "goToWhatsApp": "Contact us on WhatsApp",
     "goToTracking": "Track my order"
   },

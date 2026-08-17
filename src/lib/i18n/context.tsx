@@ -11,22 +11,22 @@ const translations: Record<Locale, Record<string, unknown>> = { fr, en };
 interface I18nContextType {
   locale: Locale;
   setLocale: (locale: Locale) => void;
-  t: (key: string) => string;
+  t: (key: string) => any;
 }
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
 
-function getNestedValue(obj: Record<string, unknown>, path: string): string {
+function getNestedValue(obj: Record<string, unknown>, path: string): any {
   const keys = path.split(".");
-  let current: unknown = obj;
+  let current: any = obj;
   for (const key of keys) {
-    if (current && typeof current === "object" && key in (current as Record<string, unknown>)) {
-      current = (current as Record<string, unknown>)[key];
+    if (current && typeof current === "object" && key in current) {
+      current = current[key];
     } else {
       return path;
     }
   }
-  return typeof current === "string" ? current : path;
+  return current;
 }
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
@@ -48,7 +48,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const t = useCallback(
-    (key: string): string => {
+    (key: string): any => {
       return getNestedValue(translations[locale] as Record<string, unknown>, key);
     },
     [locale]
