@@ -78,7 +78,7 @@ export function Hero() {
           {/* Sous-titre */}
           <motion.p
             variants={item}
-            className="text-lg md:text-xl text-[#6b7b8d] mb-10 max-w-2xl mx-auto leading-relaxed"
+            className="text-lg md:text-xl text-black font-medium mb-10 max-w-2xl mx-auto leading-relaxed"
           >
             {t("hero.subtitle")}
           </motion.p>
@@ -111,7 +111,7 @@ export function Hero() {
           {/* Stats avec compteurs animés */}
           <motion.div
             variants={item}
-            className="mt-16 grid grid-cols-3 gap-8 max-w-lg mx-auto"
+            className="mt-16 grid grid-cols-2 gap-8 max-w-sm mx-auto"
           >
             <div className="text-center">
               <div className="text-2xl md:text-3xl font-bold text-[#1e2d3d]">
@@ -121,20 +121,12 @@ export function Hero() {
                 {t("hero.statsReports") || "Rapports livrés"}
               </div>
             </div>
-            <div className="text-center border-x border-[#d4cdc5]">
+            <div className="text-center border-l border-[#d4cdc5] pl-8">
               <div className="text-2xl md:text-3xl font-bold text-[#1e2d3d]">
                 <AnimatedCounter value={100} suffix="%" />
               </div>
               <div className="text-xs md:text-sm text-[#9ca3af]">
                 {t("hero.statsSatisfaction") || "Satisfaction"}
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-[#1e2d3d]">
-                <AnimatedCounter value={5} suffix=" jours max" />
-              </div>
-              <div className="text-xs md:text-sm text-[#9ca3af]">
-                {t("hero.statsDelivery") || "Délai moyen"}
               </div>
             </div>
           </motion.div>

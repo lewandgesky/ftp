@@ -29,7 +29,7 @@ export function ParallaxBackground() {
         muted
         playsInline
         style={{ y, scale }}
-        className="w-full h-full object-cover opacity-60 will-change-transform"
+        className="w-full h-full object-cover opacity-90 will-change-transform"
       >
         <source src="/videos/sea-storm.mp4" type="video/mp4" />
       </motion.video>

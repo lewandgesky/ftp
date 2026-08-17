@@ -19,7 +19,7 @@ interface StaggerProps {
  * Conteneur qui anime ses enfants <StaggerItem> en cascade lorsqu'il
  * entre dans le viewport. Idéal pour les grilles (Services, Templates, FAQ).
  */
-export function Stagger({
+export const Stagger = React.forwardRef<HTMLElement, StaggerProps>(({
   children,
   className,
   stagger = 0.12,
@@ -27,7 +27,7 @@ export function Stagger({
   once = true,
   amount = 0.2,
   as = "div",
-}: StaggerProps) {
+}, ref) => {
   const MotionTag = motion[as] as typeof motion.div;
 
   const container: Variants = {
@@ -42,6 +42,7 @@ export function Stagger({
 
   return (
     <MotionTag
+      ref={ref as any}
       className={className}
       variants={container}
       initial="hidden"
@@ -51,7 +52,7 @@ export function Stagger({
       {children}
     </MotionTag>
   );
-}
+});
 
 interface StaggerItemProps {
   children: React.ReactNode;

@@ -12,10 +12,32 @@ import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 export function Services() {
   const { t } = useTranslation();
   const [prices, setPrices] = React.useState({ reportPrice: 0, powerpointPrice: 0, packPrice: 0 });
+  const scrollRef = React.useRef<HTMLElement>(null);
 
   React.useEffect(() => {
     getPriceSettings().then(setPrices);
   }, []);
+
+  React.useEffect(() => {
+    // Scroll to center card (popular one) on mobile by default
+    if (scrollRef.current && window.innerWidth < 768) {
+      setTimeout(() => {
+        if (scrollRef.current) {
+          scrollRef.current.scrollLeft = (scrollRef.current.scrollWidth - scrollRef.current.clientWidth) / 2;
+        }
+      }, 100);
+    }
+  }, []);
+
+  const handleScroll = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      const scrollAmount = window.innerWidth * 0.85;
+      scrollRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth"
+      });
+    }
+  };
 
   const services = [
     {
@@ -76,13 +98,35 @@ export function Services() {
           <p className="text-[#6b7b8d] max-w-2xl mx-auto">{t("services.subtitle")}</p>
         </Reveal>
 
-        <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="relative">
+          {/* Navigation Arrows (Mobile only) */}
+          <button 
+            onClick={() => handleScroll("left")}
+            className="md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 flex items-center justify-center bg-white/80 backdrop-blur-md text-[#1e2d3d] rounded-full shadow-lg border border-[#d4cdc5]"
+            aria-label="Défiler à gauche"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          
+          <button 
+            onClick={() => handleScroll("right")}
+            className="md:hidden absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 flex items-center justify-center bg-white/80 backdrop-blur-md text-[#1e2d3d] rounded-full shadow-lg border border-[#d4cdc5]"
+            aria-label="Défiler à droite"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+
+          <Stagger 
+            ref={scrollRef as any}
+            className="flex md:grid md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto overflow-x-auto pb-8 pt-4 snap-x snap-mandatory -mx-4 px-4 md:mx-auto md:px-0 md:overflow-visible scrollbar-hide"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
           {services.map((service) => {
             const isPopular = service.isPopular;
             const features = (t(`services.${service.key}.features`) as unknown) as string[];
 
             return (
-              <StaggerItem key={service.id}>
+              <StaggerItem key={service.id} className="min-w-[85vw] sm:min-w-[400px] md:min-w-0 snap-center shrink-0 pt-4 md:pt-0">
               <Card
                 className={`relative card-hover flex flex-col h-full ${
                   isPopular ? "border-[#c8944e]/50 shadow-glow md:-translate-y-4" : ""
@@ -132,7 +176,8 @@ export function Services() {
               </StaggerItem>
             );
           })}
-        </Stagger>
+          </Stagger>
+        </div>
       </div>
     </section>
   );
