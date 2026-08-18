@@ -2,7 +2,7 @@
 
 ## 1. Ce que j'ai compris du projet
 
-**FTP (Fast & Trust Platform / FaisToiPlaisir)** est une application Next.js qui vend un
+**FTP (FaisToiPlaisir)** est une application Next.js qui vend un
 service de rédaction de **rapports de stage, mémoires et présentations PowerPoint** pour étudiants.
 
 ### Stack technique

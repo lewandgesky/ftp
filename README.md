@@ -1,6 +1,6 @@
-# Fast & Trust Platform (FTP)
+# FaisToiPlaisir (FTP)
 
-**FTP (Fast & Trust Platform)** est une application web moderne développée pour accompagner les étudiants dans la rédaction de leurs rapports de stage, mémoires et présentations (PowerPoint). La plateforme permet de commander des services d'assistance rédactionnelle personnalisée de manière simple, sécurisée et rapide.
+**FTP (FaisToiPlaisir)** est une application web moderne développée pour accompagner les étudiants dans la rédaction de leurs rapports de stage, mémoires et présentations (PowerPoint). La plateforme permet de commander des services d'assistance rédactionnelle personnalisée de manière simple, sécurisée et rapide.
 
 ## 🚀 Fonctionnalités Principales
 

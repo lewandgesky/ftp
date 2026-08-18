@@ -14,7 +14,7 @@ export default function MentionsLegalesPage() {
             <section>
               <h2 className="text-xl font-semibold text-[#1e2d3d] mb-3">1. Éditeur du site</h2>
               <p>
-                Le site internet FTP (Fast & Trust Platform) est édité par l'équipe FTP.
+                Le site internet FTP (FaisToiPlaisir) est édité par l'équipe FTP.
                 Pour toute question, veuillez utiliser le formulaire de contact ou les coordonnées fournies sur la plateforme.
               </p>
             </section>
