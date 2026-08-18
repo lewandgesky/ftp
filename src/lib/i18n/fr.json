@@ -180,6 +180,7 @@
       {
         "badge": "Août 2026",
         "flag": "🇪🇺",
+        "image": "/images/news/ai-act.jpg",
         "title": "Loi AI Act — Watermarks obligatoires",
         "desc": "L'Union Européenne impose à tous les modèles IA (ChatGPT, Claude, Gemini) d'intégrer des watermarks invisibles dans leurs textes. Ces empreintes numériques permettent de tracer l'origine de tout document généré.",
         "source": "https://artificialintelligenceact.eu/article/50/",
@@ -188,6 +189,7 @@
       {
         "badge": "2025",
         "flag": "🔍",
+        "image": "/images/news/synthid.jpg",
         "title": "SynthID de Google — Empreinte invisible",
         "desc": "Google a déployé SynthID, une technologie qui insère une empreinte statistique imperceptible dans chaque texte généré par ses modèles. Les universités s'équipent de détecteurs compatibles.",
         "source": "https://deepmind.google/technologies/synthid/",
@@ -196,6 +198,7 @@
       {
         "badge": "2026",
         "flag": "🎓",
+        "image": "/images/news/university.jpg",
         "title": "Universités en alerte maximale",
         "desc": "Harvard, Oxford et de nombreuses universités classent l'utilisation non déclarée de l'IA comme fraude académique, passible d'exclusion définitive ou de mention permanente au dossier.",
         "source": "https://oai.fas.harvard.edu/ai-guidance/",
@@ -204,6 +207,7 @@
       {
         "badge": "2026",
         "flag": "⚠️",
+        "image": "/images/news/paraphrase.jpg",
         "title": "La paraphrase ne suffit plus",
         "desc": "Même les outils de réécriture et de paraphrase ne suppriment pas toujours les watermarks statistiques. L'AI Act rend les fournisseurs d'IA responsables de la traçabilité de leurs contenus.",
         "source": "https://www.forbes.com/sites/lanceeliot/2024/08/26/detecting-whether-generative-ai-watermarking-has-been-used-is-an-ai-ethics-and-ai-law-priority/",
