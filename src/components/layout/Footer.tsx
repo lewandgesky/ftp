@@ -104,7 +104,7 @@ export function Footer() {
             &copy; {currentYear} {t("common.brandFullName")}. {t("footer.rights")}
           </p>
           <div className="flex gap-4">
-            <span className="text-xs text-[#6b7b8d]">FTP Team</span>
+            <span className="text-xs text-[#6b7b8d]">REDAC Team</span>
           </div>
         </div>
       </div>

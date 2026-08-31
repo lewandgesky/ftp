@@ -225,9 +225,9 @@ export function WhyChooseUs() {
                       </span>
                     </div>
 
-                    {/* FTP row */}
+                    {/* REDAC row */}
                     <div className="flex items-start gap-3 mb-3 p-3 rounded-xl bg-[#10b981]/5 border border-[#10b981]/10">
-                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#10b981] bg-[#10b981]/10 px-2 py-0.5 rounded-md shrink-0 mt-0.5">FTP</span>
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#10b981] bg-[#10b981]/10 px-2 py-0.5 rounded-md shrink-0 mt-0.5">REDAC</span>
                       <span className="text-sm text-[#374151] leading-relaxed">
                         {item.human}
                       </span>

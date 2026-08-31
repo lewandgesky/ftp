@@ -15,25 +15,25 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "FTP — FaisToiPlaisir | Rédaction de Rapports de Stage",
+  title: "REDAC — REDAC | Rédaction de Rapports de Stage",
   description:
-    "FTP (FaisToiPlaisir) est votre partenaire pour la rédaction professionnelle de rapports de stage et présentations PowerPoint. Service premium, confidentiel et rapide.",
+    "REDAC est votre partenaire pour la rédaction professionnelle de rapports de stage et présentations PowerPoint. Service premium, confidentiel et rapide.",
   keywords: [
     "rapport de stage",
     "rédaction rapport",
     "PowerPoint soutenance",
     "aide rédaction",
     "rapport professionnel",
-    "FTP",
-    "FaisToiPlaisir",
+    "REDAC",
+    "REDAC",
   ],
   openGraph: {
-    title: "FTP — FaisToiPlaisir | Rédaction de Rapports de Stage",
+    title: "REDAC — REDAC | Rédaction de Rapports de Stage",
     description:
       "Votre rapport de stage rédigé par un expert. Service professionnel, confidentiel et rapide.",
     type: "website",
     locale: "fr_FR",
-    siteName: "FTP - FaisToiPlaisir",
+    siteName: "REDAC - REDAC",
   },
 };
 

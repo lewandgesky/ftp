@@ -1,7 +1,7 @@
 {
   "common": {
-    "brandName": "FTP",
-    "brandFullName": "FaisToiPlaisir",
+    "brandName": "REDAC",
+    "brandFullName": "REDAC",
     "orderNow": "Commander mon rapport",
     "seeTemplates": "Voir nos réalisations",
     "whatsappChat": "Discuter sur WhatsApp",
@@ -140,7 +140,7 @@
   "whyChooseUs": {
     "title": "Pourquoi nous choisir ?",
     "subtitle": "Un travail 100% humain, sans risque de détection IA. Voici pourquoi nos clients nous font confiance.",
-    "humanLabel": "Expert FTP",
+    "humanLabel": "Expert REDAC",
     "aiLabel": "Intelligence Artificielle",
     "comparison": [
       {
@@ -303,7 +303,7 @@
     }
   },
   "admin": {
-    "title": "Administration FTP",
+    "title": "Administration REDAC",
     "login": "Connexion administrateur",
     "password": "Mot de passe",
     "loginBtn": "Se connecter",

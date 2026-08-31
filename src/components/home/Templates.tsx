@@ -423,7 +423,7 @@ export function Templates() {
                       République du Cameroun — Paix - Travail - Patrie
                     </div>
                     <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#c8944e] to-[#d4a96a] mx-auto mb-4 flex items-center justify-center text-white text-xl font-bold">
-                      FTP
+                      REDAC
                     </div>
                     <h4 className="text-lg md:text-xl font-bold text-gray-900 mb-2">
                       RAPPORT DE STAGE

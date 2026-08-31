@@ -1,8 +1,8 @@
-# Analyse & améliorations — Scroller Framer Motion sur la landing page (FTP)
+# Analyse & améliorations — Scroller Framer Motion sur la landing page (REDAC)
 
 ## 1. Ce que j'ai compris du projet
 
-**FTP (FaisToiPlaisir)** est une application Next.js qui vend un
+**REDAC** est une application Next.js qui vend un
 service de rédaction de **rapports de stage, mémoires et présentations PowerPoint** pour étudiants.
 
 ### Stack technique

@@ -1,9 +1,9 @@
 import { Order, OrderFile, PriceSettings, OrderStatus, Review, ReviewStatus } from "@/types/order";
 import { supabase } from "./supabase";
 
-const SETTINGS_KEY = "ftp-settings";
-const ADMIN_KEY = "ftp-admin-auth";
-const ADMIN_PASS_KEY = "ftp-admin-pass";
+const SETTINGS_KEY = "REDAC-settings";
+const ADMIN_KEY = "REDAC-admin-auth";
+const ADMIN_PASS_KEY = "REDAC-admin-pass";
 const DEFAULT_ADMIN_PASS = "admin2026";
 
 // ==================== ORDER MANAGEMENT (SUPABASE) ====================

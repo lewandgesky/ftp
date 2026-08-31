@@ -1,6 +1,6 @@
-# FaisToiPlaisir (FTP)
+# REDAC (REDAC)
 
-**FTP (FaisToiPlaisir)** est une application web moderne développée pour accompagner les étudiants dans la rédaction de leurs rapports de stage, mémoires et présentations (PowerPoint). La plateforme permet de commander des services d'assistance rédactionnelle personnalisée de manière simple, sécurisée et rapide.
+**REDAC** est une application web moderne développée pour accompagner les étudiants dans la rédaction de leurs rapports de stage, mémoires et présentations (PowerPoint). La plateforme permet de commander des services d'assistance rédactionnelle personnalisée de manière simple, sécurisée et rapide.
 
 ## 🚀 Fonctionnalités Principales
 
@@ -42,8 +42,8 @@ Voici un aperçu des dernières mises à jour importantes apportées au projet :
 
 1. **Cloner le projet**
    ```bash
-   git clone https://github.com/lewandgesky/ftp.git
-   cd ftp
+   git clone https://github.com/lewandgesky/REDAC.git
+   cd REDAC
    ```
 
 2. **Installer les dépendances**

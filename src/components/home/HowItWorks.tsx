@@ -154,7 +154,7 @@ export function HowItWorks() {
                 <div className="w-3 h-3 rounded-full bg-yellow-400/60"></div>
                 <div className="w-3 h-3 rounded-full bg-green-400/60"></div>
                 <div className="ml-3 flex-1 h-6 bg-[#0f1923] rounded-md flex items-center px-3">
-                  <span className="text-[10px] text-[#8899aa]">faistoiplaisir.com</span>
+                  <span className="text-[10px] text-[#8899aa]">REDAC.com</span>
                 </div>
               </div>
               

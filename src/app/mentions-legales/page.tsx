@@ -14,7 +14,7 @@ export default function MentionsLegalesPage() {
             <section>
               <h2 className="text-xl font-semibold text-[#1e2d3d] mb-3">1. Éditeur du site</h2>
               <p>
-                Le site internet FTP (FaisToiPlaisir) est édité par l'équipe FTP.
+                Le site internet REDAC est édité par l'équipe REDAC.
                 Pour toute question, veuillez utiliser le formulaire de contact ou les coordonnées fournies sur la plateforme.
               </p>
             </section>
@@ -40,7 +40,7 @@ export default function MentionsLegalesPage() {
             <section>
               <h2 className="text-xl font-semibold text-[#1e2d3d] mb-3">4. Limitation de responsabilité</h2>
               <p>
-                FTP s'efforce de fournir un service d'assistance rédactionnelle de haute qualité, mais ne saurait
+                REDAC s'efforce de fournir un service d'assistance rédactionnelle de haute qualité, mais ne saurait
                 être tenu responsable des notes obtenues ou des décisions académiques des établissements des étudiants.
                 Les travaux fournis servent de base de recherche et d'accompagnement.
               </p>

@@ -78,7 +78,7 @@ export default function NewReviewPage() {
               Votre avis compte ! ⭐
             </h1>
             <p className="text-[#6b7b8d]">
-              Partagez votre expérience avec FTP. Votre retour nous aide à nous améliorer et aide d&apos;autres étudiants à nous faire confiance.
+              Partagez votre expérience avec REDAC. Votre retour nous aide à nous améliorer et aide d&apos;autres étudiants à nous faire confiance.
             </p>
           </div>
 
@@ -126,7 +126,7 @@ export default function NewReviewPage() {
                     id="content"
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
-                    placeholder="Décrivez votre expérience avec FTP... (qualité du travail, communication, respect des délais, etc.)"
+                    placeholder="Décrivez votre expérience avec REDAC... (qualité du travail, communication, respect des délais, etc.)"
                     className="min-h-[120px] bg-white border-[#d4cdc5] text-[#1e2d3d] focus:ring-[#c2a275]"
                     required
                   />

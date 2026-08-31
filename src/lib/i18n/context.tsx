@@ -34,7 +34,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem("ftp-locale") as Locale | null;
+    const saved = localStorage.getItem("REDAC-locale") as Locale | null;
     if (saved && (saved === "fr" || saved === "en")) {
       setLocaleState(saved);
     }
@@ -43,7 +43,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
 
   const setLocale = useCallback((newLocale: Locale) => {
     setLocaleState(newLocale);
-    localStorage.setItem("ftp-locale", newLocale);
+    localStorage.setItem("REDAC-locale", newLocale);
     document.documentElement.lang = newLocale;
   }, []);
 
